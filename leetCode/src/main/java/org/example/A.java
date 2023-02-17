@@ -1,9 +1,69 @@
 package org.example;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class A {
+    public static void main(String[] args) {
+        TreeNode a7 = new TreeNode(7);
+        TreeNode a15 = new TreeNode(15);
+        TreeNode a20 = new TreeNode(20,a15,a7);
+        TreeNode a9 = new TreeNode(9);
+        TreeNode a3 = new TreeNode(3,a9,a20);
+        System.out.println(minDiffInBST_783(a3));
+    }
+
+    public static int minDiffInBST_783(TreeNode root) {
+        ArrayList<Integer> list= new ArrayList<>();
+        list = minDiffInBST(root,list);
+        Collections.sort(list);
+        int min = Math.abs(list.get(0)- list.get(1));
+        for (int i = 1; i < list.size()-1; i++) {
+            int a = Math.abs(list.get(i)- list.get(i+1));
+            if (a < min){
+                min = a;
+            }
+        }
+        return min;
+    }
+    public static ArrayList<Integer> minDiffInBST(TreeNode root,ArrayList list) {
+        if (root == null) {
+            return list;
+        }
+        list.add(root.val);
+        minDiffInBST(root.left,list);
+        minDiffInBST(root.right,list);
+        return list;
+    }
+
+    public static int maxDepth_104(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = maxDepth_104(root.left);
+        int right = maxDepth_104(root.right);
+
+        return Math.max(left, right) + 1;
+    }
+    public int nextTreeNodes(TreeNode root) {
+        int k = 0;
+        ArrayList<TreeNode> treeNodes = new ArrayList<>();
+        treeNodes.add(root);
+        return     0;
+    }
+
+    public static class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+     TreeNode() {}
+     TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+  }
     public List<Integer> addToArrayForm_989(int[] num, int k) {
         LinkedList<Integer> arrayList = new LinkedList<>();
         int i = num.length-1;
