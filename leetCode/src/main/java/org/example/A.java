@@ -9,8 +9,32 @@ public class A {
         TreeNode a20 = new TreeNode(20,a15,a7);
         TreeNode a9 = new TreeNode(9);
         TreeNode a3 = new TreeNode(3,a9,a20);
-        System.out.println(minDiffInBST_783(a3));
+        System.out.println(zigzagLevelOrder(a3));
     }
+    //static List<List<Integer>>  a103 = new ArrayList<>();
+
+    public static   List<List<Integer>> zigzagLevelOrder(TreeNode root) {  //103
+        List<List<Integer>>  a103 = new ArrayList<>();
+        return next103(root,0,a103);
+
+    }
+    public static   List<List<Integer>> next103(TreeNode root, Integer curr,List<List<Integer>> a103){
+        if (root == null) {
+            return a103;
+        }
+        if (a103.size()<= curr){
+            a103.add(curr,new ArrayList<>());
+        }
+        if (curr % 2 == 0) {
+            a103.get(curr).add(root.val);
+        }
+        else a103.get(curr).add(0,root.val);
+        next103(root.left,curr+1,a103);
+        next103(root.right,curr+1,a103);
+        return a103;
+    }
+
+
 
     public static int minDiffInBST_783(TreeNode root) {
         ArrayList<Integer> list= new ArrayList<>();
