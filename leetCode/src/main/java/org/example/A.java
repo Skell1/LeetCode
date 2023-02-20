@@ -9,9 +9,41 @@ public class A {
         TreeNode a20 = new TreeNode(20,a15,a7);
         TreeNode a9 = new TreeNode(9);
         TreeNode a3 = new TreeNode(3,a9,a20);
-        System.out.println(zigzagLevelOrder(a3));
+        int [] nums = {1,4,6,7,8,9};
+
+        int[] nums1 ={1,3,4,6,7,10};
+
+        searchInsert(nums,6);
+
+        //System.out.println(zigzagLevelOrder(a3));
     }
-    //static List<List<Integer>>  a103 = new ArrayList<>();
+
+    public static int searchInsert(int[] nums, int target) {  //35
+        int k = nums.length/2;
+        int up = nums.length;
+        int down = 0;
+        while (true){
+            if (nums[k]==target){
+                return k;
+            }
+            if (nums[k]> target){
+                if (k==0) return k;
+                if (nums[k-1]<target) return k;
+                up = k;
+                k = k/2;
+
+            }
+            else {
+                if (k==nums.length -1) {
+                    return k + 1;
+                }
+                else if  (nums[k+1]>target) return k+1;
+                down = k;
+                k = (up + down)/2;
+            }
+        }
+    }
+
 
     public static   List<List<Integer>> zigzagLevelOrder(TreeNode root) {  //103
         List<List<Integer>>  a103 = new ArrayList<>();
