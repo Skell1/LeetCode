@@ -14,7 +14,18 @@ public class A {
         int[] nums1 ={-1,-8,0,5,-9};
 
 
-        System.out.println(maxSatisfaction(nums1));
+        System.out.println(minPartitions("82734"));
+    }
+
+    public static int minPartitions(String n) { //1689
+        char[] a = n.toCharArray();
+        int s = 0;
+        for (int i = 0; i < a.length; i++) {
+            int b = a[i] - 48;
+            if (b>s) s = b;
+            if (s==9) break;
+        }
+        return s;
     }
 
     public static int maxSatisfaction(int[] satisfaction) { //1402
