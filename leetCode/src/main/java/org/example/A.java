@@ -11,13 +11,32 @@ public class A {
         TreeNode a3 = new TreeNode(3,a9,a20);
         int [] nums = {1,4,6,7,8,9};
 
-        int[] nums1 ={1,3,4,6,7,10};
+        int[] nums1 ={-1,-8,0,5,-9};
 
-        searchInsert(nums,6);
 
-        //System.out.println(zigzagLevelOrder(a3));
+        System.out.println(maxSatisfaction(nums1));
     }
 
+    public static int maxSatisfaction(int[] satisfaction) { //1402
+        Arrays.sort(satisfaction);
+        if (satisfaction[satisfaction.length-1] <= 0) return 0;
+        int s = 0;
+        int k = 0;
+        for (int i = satisfaction.length-1; i >=0 ; i--) {
+            if (satisfaction[i] >=0 ) {
+                s += k + satisfaction[i];
+                k += satisfaction[i];
+            }
+            else {
+                if (s < s + k + satisfaction[i]){
+                    s += k + satisfaction[i];
+                    k += satisfaction[i];
+                }
+                else break;
+            }
+        }
+        return s;
+    }
     public static int searchInsert(int[] nums, int target) {  //35
         int k = nums.length/2;
         int up = nums.length;
