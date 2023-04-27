@@ -11,13 +11,47 @@ public class A {
         TreeNode a3 = new TreeNode(3,a9,a20);
         int [] nums = {1,4,6,7,8,9};
 
-        int[] nums1 ={1,3,4,6,7,10};
+        int[] nums1 ={-1,-8,0,5,-9};
+
 
         System.out.println(bulbSwitch(2));
         //System.out.println(zigzagLevelOrder(a3));
     }
+    
     public static int bulbSwitch(int n) {  //319
         return (int)(Math.sqrt(n));
+    }
+
+    public static int minPartitions(String n) { //1689
+        char[] a = n.toCharArray();
+        int s = 0;
+        for (int i = 0; i < a.length; i++) {
+            int b = a[i] - 48;
+            if (b>s) s = b;
+            if (s==9) break;
+        }
+        return s;
+    }
+
+    public static int maxSatisfaction(int[] satisfaction) { //1402
+        Arrays.sort(satisfaction);
+        if (satisfaction[satisfaction.length-1] <= 0) return 0;
+        int s = 0;
+        int k = 0;
+        for (int i = satisfaction.length-1; i >=0 ; i--) {
+            if (satisfaction[i] >=0 ) {
+                s += k + satisfaction[i];
+                k += satisfaction[i];
+            }
+            else {
+                if (s < s + k + satisfaction[i]){
+                    s += k + satisfaction[i];
+                    k += satisfaction[i];
+                }
+                else break;
+            }
+        }
+        return s;
     }
     public static int searchInsert(int[] nums, int target) {  //35
         int k = nums.length/2;
