@@ -13,11 +13,12 @@ public class A {
 
         int[] nums1 ={1,3,4,6,7,10};
 
-        searchInsert(nums,6);
-
+        System.out.println(bulbSwitch(2));
         //System.out.println(zigzagLevelOrder(a3));
     }
-
+    public static int bulbSwitch(int n) {  //319
+        return (int)(Math.sqrt(n));
+    }
     public static int searchInsert(int[] nums, int target) {  //35
         int k = nums.length/2;
         int up = nums.length;
