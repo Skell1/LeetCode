@@ -14,7 +14,12 @@ public class A {
         int[] nums1 ={-1,-8,0,5,-9};
 
 
-        System.out.println(minPartitions("82734"));
+        System.out.println(bulbSwitch(2));
+        //System.out.println(zigzagLevelOrder(a3));
+    }
+    
+    public static int bulbSwitch(int n) {  //319
+        return (int)(Math.sqrt(n));
     }
 
     public static int minPartitions(String n) { //1689
