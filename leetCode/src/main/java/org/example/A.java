@@ -13,11 +13,44 @@ public class A {
 
         int[] nums1 ={-1,-8,0,5,-9};
 
+        String s = "aa", goal = "aa";
 
-        System.out.println(bulbSwitch(2));
+        System.out.println(buddyStrings(s,goal));
         //System.out.println(zigzagLevelOrder(a3));
     }
-    
+
+    public static boolean buddyStrings(String s, String goal) { //859
+        if (s.length()!=goal.length()) return false;
+        char[] ss = s.toCharArray();
+        char[] goals = goal.toCharArray();
+        if (s.equals(goal)){
+            for (int i = 0; i < ss.length-1; i++) {
+                for (int j = i+1; j < ss.length; j++) {
+                    if (ss[i]==ss[j]) return true;
+                }
+            }
+            return false;
+        }
+        byte k = 0;
+        char a = 0,b = 0;
+        for (int i = 0; i < ss.length; i++) {
+            if (ss[i]!=goals[i]){
+                if (k == 0) {
+                    a = ss[i];
+                    b = goals[i];
+                    k = 1;
+                }
+                else if (k==1){
+                    if (ss[i] == b && goals[i] == a) k=2;
+                    else return false;
+                }
+                else return false;
+            }
+        }
+        if (k!=2) return false;
+        return true;
+    }
+
     public static int bulbSwitch(int n) {  //319
         return (int)(Math.sqrt(n));
     }
