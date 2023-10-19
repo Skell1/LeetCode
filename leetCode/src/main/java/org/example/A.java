@@ -10,15 +10,52 @@ public class A {
         TreeNode a9 = new TreeNode(9);
         TreeNode a3 = new TreeNode(3,a9,a20);
         int [] nums = {1,4,6,7,8,9};
+        Date first = new Date(2023,5, 10);
+        Date second = new Date(2023,5, 9);
+        Date third = new Date(2023,5, 11);
+        System.out.println(first.compareTo(second));
+      System.out.println(second.compareTo(first));
+        System.out.println(first.compareTo(third));
+        System.out.println(third.compareTo(first));
+        System.out.println(third.compareTo(third));
 
         int[] nums1 ={-1,-8,0,5,-9};
 
         String s = "aa", goal = "aa";
 
-        System.out.println(buddyStrings(s,goal));
+        //System.out.println(getRow(30));
         //System.out.println(zigzagLevelOrder(a3));
     }
 
+    public static List<Integer> getRow(int rowIndex) { //119
+        List<Integer> list = new LinkedList<>();
+        for (int i = 0; i <= rowIndex; i++) {
+            int a = getSoch(i,rowIndex);
+            list.add(a);
+        }
+        return list;
+    }
+
+    public static Integer getSoch(int m, int n){
+        long answ = 1;
+        int b = n-m > m? n-m : m;
+        int c = n-m <= m? n-m : m;
+        int count = 1;
+        for (int i = b + 1; i <= n; i++,count++) {
+            answ = answ * i/count ;
+        }
+        return (int) answ;
+    }
+
+    public static long factorial(int number) {
+        long result = 1;
+
+        for (int factor = 2; factor <= number; factor++) {
+            result *= factor;
+        }
+
+        return result;
+    }
     public static boolean buddyStrings(String s, String goal) { //859
         if (s.length()!=goal.length()) return false;
         char[] ss = s.toCharArray();
