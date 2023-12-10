@@ -12,8 +12,10 @@ public class LeetCode_800_900 {
         String s = "ab##";
         //String t = "ad#c";
         String t = "c#d#";
+        int[][] matrix = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
+        int[][] mat = new int[][]{{1,2,3},{4,5,6}};
 
-        System.out.println(backspaceCompare(s,t));
+        System.out.println(transpose(mat));
     }
 
     public static boolean backspaceCompare(String s, String t) {// 844
@@ -42,5 +44,20 @@ public class LeetCode_800_900 {
         }
 
         return a.equals(b);
+    }
+
+    public static int[][] transpose(int[][] matrix) { //867
+        int r = matrix.length;
+        int c = matrix[0].length;
+        int[][] ans = new int[c][r];
+        for (int i = 0; i < c; i++)
+        {
+            for (int j = 0; j < r; j++)
+            {
+                ans[i][j] = matrix[j][i];
+            }
+        }
+        System.gc();
+        return ans;
     }
 }
