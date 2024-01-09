@@ -1,13 +1,19 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.example.util.TreeNode;
 
 public class LeetCode_800_900 {
+
+
     public static void main(String[] args) {
+        A.TreeNode a7 = new A.TreeNode(7);
+        A.TreeNode a15 = new A.TreeNode(15);
+        A.TreeNode a20 = new A.TreeNode(20,a15,a7);
+        A.TreeNode a9 = new A.TreeNode(9);
+        A.TreeNode a3 = new A.TreeNode(3,a9,a20);
         //String s = "ab#c";
         String s = "ab##";
         //String t = "ad#c";
@@ -15,7 +21,16 @@ public class LeetCode_800_900 {
         int[][] matrix = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
         int[][] mat = new int[][]{{1,2,3},{4,5,6}};
 
-        System.out.println(transpose(mat));
+        //System.out.println(leafSimilar());
+    }
+
+    public static boolean leafSimilar(TreeNode root1, TreeNode root2) { //872
+        List<Integer>  a = new ArrayList<>();
+        List<Integer>  b = new ArrayList<>();
+
+        List anA = TreeNode.allLast(root1, a);
+        List anB = TreeNode.allLast(root2, b);
+        return anB.equals(anA);
     }
 
     public static boolean backspaceCompare(String s, String t) {// 844
