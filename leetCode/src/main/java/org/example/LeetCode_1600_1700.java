@@ -1,8 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class LeetCode_1600_1700 {
@@ -12,7 +10,6 @@ public class LeetCode_1600_1700 {
 
     public boolean closeStrings(String word1, String word2) { //1657
         if (word1.length()!=word2.length()) return false;
-
         int[] count1 = new int[26];
         int[] count2 = new int[26];
 
