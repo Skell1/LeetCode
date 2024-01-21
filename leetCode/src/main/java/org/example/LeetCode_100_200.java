@@ -8,6 +8,18 @@ public class LeetCode_100_200 {
         rotate(a,3);
 
         rotate(b,2);
+        new LeetCode_100_200().rob(new int[]{1,2,3,1});
+    }
+
+    public int rob(int[] nums) { //198
+        int n = nums.length;
+        int pre = 0, cur = 0;
+        for (int i = 0; i < n; i++) {
+            int temp = Math.max(pre + nums[i], cur);
+            pre = cur;
+            cur = temp;
+        }
+        return cur;
     }
 
     public static void rotate(int[] nums, int k) { // 189
