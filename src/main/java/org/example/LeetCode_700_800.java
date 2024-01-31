@@ -1,9 +1,33 @@
 package org.example;
 
+import java.util.Stack;
+
 public class LeetCode_700_800 {
     public static void main(String[] args) {
-        System.out.println(kthGrammar(7,12));
-        System.out.println(kthGrammarOld(7,12));
+//        System.out.println(kthGrammar(7,12));
+//        System.out.println(kthGrammarOld(7,12));
+        System.out.println(dailyTemperatures(new int[]{73,74,75,71,69,72,76,73}));
+    }
+
+    public static int[] dailyTemperatures(int[] temperatures) { //739
+        //Stack<Integer> stack = new Stack<>();
+        Stack<Integer> ind = new Stack<>();
+        int[] answ = new int[temperatures.length];
+        int temp;
+        int index;
+
+        for (int i = 0; i < temperatures.length; i++) {
+            temp = temperatures[i];
+            while (!ind.empty() && temperatures[ind.peek()]<temp) {
+                index = ind.pop();
+                answ[index] = i - index;
+            }
+            ind.push(i);
+        }
+        while (!ind.empty()) {
+            temperatures[ind.pop()] = 0;
+        }
+        return answ;
     }
 
     public static int kthGrammar(int n, int k) { //779
