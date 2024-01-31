@@ -4,7 +4,7 @@ import lombok.val;
 import org.example.util.TreeNode;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LeetCode_1400_1500Test {
 
