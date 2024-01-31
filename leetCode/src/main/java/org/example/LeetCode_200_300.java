@@ -1,19 +1,9 @@
 package org.example;
 
-import java.util.Objects;
-import java.util.Queue;
 import java.util.Stack;
 
 public class LeetCode_200_300 {
     public static void main(String[] args) {
-        MyQueue myQueue = new MyQueue();
-        myQueue.push(1);
-        myQueue.push(2);
-        int a = myQueue.peek();
-        int b = myQueue.pop();
-        myQueue.empty();
-
-        System.out.println(myQueue.empty());
     }
 
     public static class MyQueue {  // 232
