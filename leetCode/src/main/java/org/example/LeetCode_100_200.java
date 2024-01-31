@@ -1,6 +1,8 @@
 package org.example;
 
 
+import java.util.Stack;
+
 public class LeetCode_100_200 {
     public static void main(String[] args) {
         int[] a = new  int[] {1,2,3,4,5,6,7};
@@ -9,6 +11,33 @@ public class LeetCode_100_200 {
 
         rotate(b,2);
         new LeetCode_100_200().rob(new int[]{1,2,3,1});
+    }
+
+    public int evalRPN(String[] tokens) { //150
+        Stack<Integer> stack = new Stack<>();
+        String temp;
+        Integer num;
+        for (int i = 0; i < tokens.length; i++) {
+            temp = tokens[i];
+            if (temp.equals("+")) {
+                stack.push(stack.pop() + stack.pop());
+            }
+            else if (temp.equals("-")) {
+                num = stack.pop();
+                stack.push(stack.pop() - num);
+            }
+            else if (temp.equals("*")) {
+                stack.push(stack.pop() * stack.pop());
+            }
+            else if (temp.equals("/")) {
+                num = stack.pop();
+                stack.push(stack.pop() / num);
+            }
+            else {
+                stack.push(Integer.valueOf(tokens[i]));
+            }
+        }
+        return stack.peek();
     }
 
     public int rob(int[] nums) { //198
