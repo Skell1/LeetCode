@@ -4,7 +4,36 @@ import java.util.*;
 
 public class LeetCode_300_400 {
     public static void main(String[] args) {
-        System.out.println(isPowerOfFour(-16));
+
+        System.out.println(firstUniqChar("aabb"));
+    }
+    public static int firstUniqChar(String s) { //387
+        int ans = Integer.MAX_VALUE;
+        for(char c='a'; c<='z';c++){
+            int index = s.indexOf(c);
+            if(index!=-1&&index==s.lastIndexOf(c)){
+                ans = Math.min(ans,index);
+            }
+        }
+
+        return ans==Integer.MAX_VALUE?-1:ans;
+    }
+    public static int firstUniqChar1(String s) {//387 Мой первый
+        int[] array = new int[128];
+        Arrays.fill(array, -1);
+        int index;
+        for (int i = 0; i < s.length(); i++) {
+            index = s.charAt(i);
+            if (array[index] >= 0 || array[index] == -2) {
+                array[index] = -2;
+            }
+            else array[index] = i;
+        }
+        int result = Integer.MAX_VALUE;
+        for (int a : array){
+            if (a > -1 && a < result) result = a;
+        }
+        return result == Integer.MAX_VALUE ? -1 : result;
     }
 
     class RandomizedSet { //380
