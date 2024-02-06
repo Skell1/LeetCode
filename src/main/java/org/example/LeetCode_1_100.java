@@ -6,7 +6,7 @@ public class LeetCode_1_100 {
     public static void main(String[] args) {
 //        System.out.println(mySqrt(4));
 //        System.out.println(mySqrt(8));
-        System.out.println(groupAnagrams(new String[] {"eat","tea","tan","ate","nat","bat"}));
+        System.out.println(mySqrt(2147395599));
 
 
     }
@@ -15,7 +15,7 @@ public class LeetCode_1_100 {
         Map<String, List<String>> map = new HashMap<>();
 //        StringBuilder builder = new StringBuilder();
         String buld;
-      //  ArrayList<String> list1 = new ArrayList<>();
+        //  ArrayList<String> list1 = new ArrayList<>();
         for (int i = 0; i < strs.length; i++) {
             char[] chars = strs[i].toCharArray();
             Arrays.sort(chars);
