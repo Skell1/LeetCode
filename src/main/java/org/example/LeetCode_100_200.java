@@ -1,6 +1,8 @@
 package org.example;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class LeetCode_100_200 {
@@ -11,6 +13,27 @@ public class LeetCode_100_200 {
 
         rotate(b,2);
         new LeetCode_100_200().rob(new int[]{1,2,3,1});
+    }
+
+    public int majorityElement(int[] nums) {//169
+        if (nums.length == 1) return nums[0];
+        int maxCount = 0;
+        int maxIndex = 0;
+        int def, dep;
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            def = nums[i];
+            if (map.containsKey(def)) {
+                dep = map.get(def) + 1;
+                map.put(def, dep);
+                if (dep > maxCount) {
+                    maxCount = dep;
+                    maxIndex = def;
+                }
+            }
+            else map.put(def, 1);
+        }
+        return maxIndex;
     }
 
     public int evalRPN(String[] tokens) { //150
