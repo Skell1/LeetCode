@@ -1,14 +1,38 @@
 package org.example;
 
+import lombok.val;
 import org.example.util.TreeNode;
 
-import java.util.Arrays;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LeetCode_1400_1500 {
     public static void main(String[] args) {
-        System.out.println(maxScore("1111"));
+        System.out.println(findLeastNumOfUniqueInts(new int[] {4,3,1,1,3,3,2}, 3));
         //1011011  5
         //11100  2
+    }
+
+    public static int findLeastNumOfUniqueInts(int[] arr, int k) { //1481
+        Map<Integer,Integer> map = new HashMap<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            if (map.containsKey(arr[i])) {
+                map.put(arr[i], map.get(arr[i]) + 1);
+            }
+            else map.put(arr[i],1);
+        }
+
+        List<Map.Entry<Integer,Integer>> a = map.entrySet()
+                .stream().sorted((e,e1) -> e.getValue().compareTo(e1.getValue())).toList();
+        int result = a.size();
+        for (Map.Entry entry : a){
+            if (k-(Integer) entry.getValue() >= 0) {
+                k -=(Integer) entry.getValue();
+                result--;
+            }
+        }
+        return result;
     }
 
     public int pseudoPalindromicPaths (TreeNode root) { //1457
