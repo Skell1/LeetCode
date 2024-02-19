@@ -1,9 +1,23 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class LeetCode_200_300 {
     public static void main(String[] args) {
+        isPowerOfTwo(17);
+    }
+
+    public static boolean isPowerOfTwo(int n) { //231
+        if (n<=0) return false;
+        while (n > 2) {
+            if (n % 2 != 0)
+                return false;
+            n /= 2;
+        }
+        return true;
+
     }
 
     public static class MyQueue {  // 232
