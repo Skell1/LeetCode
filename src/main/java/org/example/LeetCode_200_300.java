@@ -1,12 +1,31 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class LeetCode_200_300 {
     public static void main(String[] args) {
-        isPowerOfTwo(17);
+        rangeBitwiseAnd(2,2);
+    }
+
+    public static int rangeBitwiseAnd(int left, int right) { //201
+        String l = Integer.toBinaryString(left);
+        String r = Integer.toBinaryString(right);
+        if (l.length() != r.length()) return 0;
+        StringBuilder builder = new StringBuilder();
+        Boolean key = true;
+        for (int i = 0; i < l.length(); i++) {
+            if (key) {
+                if (l.charAt(i) == r.charAt(i))
+                    builder.append(l.charAt(i));
+                else {
+                    key = false;
+                    builder.append(0);
+                }
+            }
+            else builder.append(0);
+        }
+        int result = Integer.parseInt(builder.toString(), 2);
+        return result;
     }
 
     public static boolean isPowerOfTwo(int n) { //231
