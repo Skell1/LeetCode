@@ -1,10 +1,32 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class LeetCode_200_300 {
     public static void main(String[] args) {
-        rangeBitwiseAnd(2,2);
+        missingNumber1(new int[]{9,6,4,2,3,5,7,0,1});
+    }
+    public static int missingNumber1(int[] nums) {//268
+        int ans = nums.length;
+
+        for (int i = 0; i < nums.length; ++i) {
+            int a = i ^ nums[i];
+            ans ^= i ^ nums[i];
+        }
+
+        return ans;
+    }
+    public int missingNumber(int[] nums) { //268
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length-1; i++) {
+            if (nums[i]+1!=nums[i+1]){
+                return nums[i]+1;
+            }
+        }
+        if (nums[0]== 0)
+        return nums[nums.length-1]+1;
+        return 0;
     }
 
     public static int rangeBitwiseAnd(int left, int right) { //201
