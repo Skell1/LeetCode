@@ -10,9 +10,28 @@ public class LeetCode_900_1000 {
 
 
     public static void main(String[] args) {
-        System.out.println(new LeetCode_900_1000().sumSubarrayMins(new int[]{11,81,94,43,3}));
+        System.out.println(new LeetCode_900_1000().findJudge(2,new int[][]{{1,2}}));
     }
     private final int MOD = 1000000007;
+
+    public int findJudge(int n, int[][] trust) { //997
+        if (trust.length == 0 && n==1) return n;
+        int[] array = new int[n];
+        int[] def;
+        int result = -1;
+        for (int i = 0; i < trust.length; i++) {
+            def = trust[i];
+            array[def[0]-1] -= 1;
+            array[def[1]-1] += 1;
+            if (array[def[1]-1] == n-1){
+                result = def[1]-1;
+            }
+        }
+        if (result != -1 && array[result] == n-1){
+            return result + 1;
+        }
+        return -1;
+    }
 
     public static int sumSubarrayMins(int[] arr) { //907
 
