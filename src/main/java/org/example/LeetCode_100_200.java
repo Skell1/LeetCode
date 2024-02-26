@@ -1,9 +1,9 @@
 package org.example;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
+
+import org.example.util.TreeNode;
 
 public class LeetCode_100_200 {
     public static void main(String[] args) {
@@ -14,6 +14,14 @@ public class LeetCode_100_200 {
         rotate(b,2);
         new LeetCode_100_200().rob(new int[]{1,2,3,1});
     }
+
+    public boolean isSameTree(TreeNode p, TreeNode q) { //100
+        if (p == null && q == null) return true;
+        if (p == null || q == null || p.val != q.val) return false;
+
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+
 
     public int majorityElement(int[] nums) {//169
         if (nums.length == 1) return nums[0];
