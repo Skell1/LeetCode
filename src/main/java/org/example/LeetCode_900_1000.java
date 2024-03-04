@@ -1,18 +1,40 @@
 package org.example;
 
-import org.example.util.TreeNode;
-
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Stack;
 import java.util.stream.Stream;
 
 public class LeetCode_900_1000 {
 
 
     public static void main(String[] args) {
-        System.out.println(new LeetCode_900_1000().sumSubarrayMins(new int[]{11,81,94,43,3}));
+        System.out.println(new LeetCode_900_1000().bagOfTokensScore(new int[]{100, 200, 300, 400}, 200));
     }
     private final int MOD = 1000000007;
+
+    public int bagOfTokensScore(int[] tokens, int power) { //948
+        int result = 0;
+        if (tokens.length==0) return 0;
+        Arrays.sort(tokens);
+        int length = tokens.length;
+        for (int i = 0; i < length; i++) {
+            if (power>= tokens[i]) {
+                power-=tokens[i];
+                result++;
+            }
+            else {
+                if (result>0 && power+tokens[length-1]>tokens[i] && length-1 != i) {
+                    result--;
+                    power+=tokens[length-1];
+                    length--;
+                    i--;
+                }
+                else break;
+            }
+        }
+
+        return result;
+    }
 
     public static int sumSubarrayMins(int[] arr) { //907
 
