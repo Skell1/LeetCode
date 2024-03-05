@@ -3,7 +3,23 @@ package org.example;
 public class LeetCode_1700_1800 {
     public static void main(String[] args) {
 
-        System.out.println(minOperations("1111"));
+        System.out.println(minimumLength("bbbbbbbbbbbbbbbbbbbbbbbbbbbabbbbbbbbbbbbbbbccbcbcbccbbabbb"));
+    }
+
+    public static int minimumLength(String s) { //1750
+        StringBuilder builder = new StringBuilder(s);
+        while (builder.length()>1 && builder.charAt(0) == builder.charAt(builder.length()-1)) {
+            char c = builder.charAt(0);
+            while (builder.length()>2 && builder.charAt(1) == c) {
+                builder.deleteCharAt(1);
+            }
+            while (builder.length()-2>0 && builder.charAt(builder.length()-2) == c) {
+                builder.deleteCharAt(builder.length()-2);
+            }
+            builder.deleteCharAt(0);
+            builder.deleteCharAt(builder.length()-1);
+        }
+        return builder.length();
     }
 
     public static int totalMoney(int n) { //1716
