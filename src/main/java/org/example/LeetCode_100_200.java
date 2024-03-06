@@ -15,6 +15,29 @@ public class LeetCode_100_200 {
         new LeetCode_100_200().rob(new int[]{1,2,3,1});
     }
 
+    class ListNode {
+      int val;
+      ListNode next;
+      ListNode(int x) {
+          val = x;
+          next = null;
+      }
+  }
+
+    public boolean hasCycle(ListNode head) { //141
+        HashSet<ListNode> set = new HashSet<>();
+        set.add(head);
+        while (head.next!=null) {
+            head = head.next;
+            if (set.contains(head)) {
+                return true;
+            } else {
+                set.add(head);
+            }
+        }
+        return false;
+    }
+
     public boolean isSameTree(TreeNode p, TreeNode q) { //100
         if (p == null && q == null) return true;
         if (p == null || q == null || p.val != q.val) return false;
