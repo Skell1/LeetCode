@@ -24,6 +24,25 @@ public class LeetCode_800_900 {
         //System.out.println(leafSimilar());
     }
 
+    public class ListNode {
+      int val;
+      ListNode next;
+      ListNode() {}
+      ListNode(int val) { this.val = val; }
+      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+  }
+
+    public ListNode middleNode(ListNode head) { //876
+        if (head.next == null) return head;
+        if (head.next.next == null) return head.next;
+        List<ListNode> list = new ArrayList<>();
+        while (head.next!=null) {
+            list.add(head);
+            head = head.next;
+        }
+        return list.size() % 2 == 0 ? list.get(list.size()/2) : list.get(list.size()/2 -1);
+    }
+
     public static boolean leafSimilar(TreeNode root1, TreeNode root2) { //872
         List<Integer>  a = new ArrayList<>();
         List<Integer>  b = new ArrayList<>();
