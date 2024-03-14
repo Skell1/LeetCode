@@ -8,9 +8,32 @@ public class LeetCode_900_1000 {
 
 
     public static void main(String[] args) {
-        System.out.println(new LeetCode_900_1000().bagOfTokensScore(new int[]{100, 200, 300, 400}, 200));
+        System.out.println(new LeetCode_900_1000().numSubarraysWithSum(new int[]{0,0,0,0,1}, 2));
     }
     private final int MOD = 1000000007;
+
+    public int numSubarraysWithSum(int[] nums, int goal) { //930
+        int sum = 0;
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            if (sum == goal) {
+                count++;
+            }
+            for (int j = i+1; j < nums.length; j++) {
+                sum+=nums[j];
+                if (sum == goal) {
+                    count++;
+                }
+                if (sum > goal) {
+                    sum = 0;
+                    break;
+                }
+            }
+            sum = 0;
+        }
+        return count;
+    }
 
     public int bagOfTokensScore(int[] tokens, int power) { //948
         int result = 0;
