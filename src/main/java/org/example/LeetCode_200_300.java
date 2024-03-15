@@ -5,8 +5,35 @@ import java.util.Stack;
 
 public class LeetCode_200_300 {
     public static void main(String[] args) {
-        missingNumber1(new int[]{9,6,4,2,3,5,7,0,1});
+        new LeetCode_200_300().productExceptSelf((new int[]{-1,1,0,-3,3}));
     }
+
+    public int[] productExceptSelf(int[] nums) { //238
+        int zeros = 0;
+        int temp = 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                temp *= nums[i];
+            }
+            else zeros++;
+        }
+
+        if (zeros > 1) {
+            Arrays.fill(nums, 0);
+            return nums;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (zeros == 1) {
+                if (nums[i] != 0)
+                    nums[i] = 0;
+                else nums[i] = temp;
+            }
+            else nums[i] = temp/nums[i];
+        }
+        return nums;
+    }
+
     public static int missingNumber1(int[] nums) {//268
         int ans = nums.length;
 
