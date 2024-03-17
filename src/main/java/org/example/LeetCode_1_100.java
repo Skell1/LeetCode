@@ -6,9 +6,79 @@ public class LeetCode_1_100 {
     public static void main(String[] args) {
 //        System.out.println(mySqrt(4));
 //        System.out.println(mySqrt(8));
-        System.out.println(mySqrt(2147395599));
+        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,5},{6,8}}, new int[]{3,7}));
+
+        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,5}}, new int[]{0,0}));
+
+        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,5}}, new int[]{0,3}));
+
+        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,5}}, new int[]{1,7}));
+
+        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,2},{3,5},{6,7},{8,10},{12,16}}, new int[]{4,8}));
 
 
+    }
+
+        public int[][] insert(int[][] intervals, int[] newInterval) { //57
+        List<int[]> list = new ArrayList<>();
+        if (intervals.length == 0){
+            int[][] result = new int[1][];
+            result[0] = newInterval;
+            return result;
+        }
+        int a,b;
+        int end = -1,start = -1;
+        int[] temp;
+        int[] nev = null;
+            for (int[] interval : intervals) {
+                a = interval[0];
+                b = interval[1];
+                temp = interval;
+                if (a < newInterval[0] && b < newInterval[0]) {
+                } else if (a < newInterval[0]) {
+                    end = Math.max(b, newInterval[1]);
+                    start = a;
+                    temp[0] = start;
+                    temp[1] = end;
+                    nev = temp;
+                } else if (b < newInterval[1]) {
+                    if (nev != null) {
+                        if (b > nev[1]) {
+                            nev[1] = b;
+                            list.remove(list.size() - 1);
+                            list.add(nev);
+                        }
+                        continue;
+                    } else {
+                        temp[0] = newInterval[0];
+                        temp[1] = newInterval[1];
+                        nev = temp;
+                    }
+
+                } else {
+                    if (nev != null) {
+                        if (a <= nev[1]) {
+                            nev[1] = b;
+                            list.remove(list.size() - 1);
+                            list.add(nev);
+                            continue;
+                        }
+                    } else {
+                        if (a > newInterval[1]) {
+                            list.add(newInterval);
+                            nev = newInterval;
+                        } else {
+                            temp[0] = newInterval[0];
+                            nev = temp;
+                        }
+                    }
+                }
+                list.add(temp);
+            }
+        if (nev == null){
+            list.add(newInterval);
+        }
+        return list.toArray(new int[0][]);
     }
 
     public static List<List<String>> groupAnagrams(String[] strs) { //49
