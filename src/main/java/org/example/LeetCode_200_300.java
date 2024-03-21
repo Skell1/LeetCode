@@ -1,11 +1,35 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
 
 public class LeetCode_200_300 {
     public static void main(String[] args) {
         new LeetCode_200_300().productExceptSelf((new int[]{-1,1,0,-3,3}));
+    }
+
+    public class ListNode {
+     int val;
+     ListNode next;
+     ListNode() {}
+     ListNode(int val) { this.val = val; }
+     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ }
+    public ListNode reverseList(ListNode head) { //206
+        if (head == null) return null;
+        List<ListNode> list = new ArrayList<>();
+        while (head!=null) {
+            list.add(head);
+            head = head.next;
+        }
+
+        for (int i = list.size()-1; i >=1 ; i--) {
+            list.get(i).next = list.get(i-1);
+        }
+        list.get(0).next = null;
+        return list.get(list.size()-1);
     }
 
     public int[] productExceptSelf(int[] nums) { //238
