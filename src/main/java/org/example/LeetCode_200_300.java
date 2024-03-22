@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class LeetCode_200_300 {
     public static void main(String[] args) {
-        new LeetCode_200_300().productExceptSelf((new int[]{-1,1,0,-3,3}));
+        new LeetCode_200_300().isPalindrome((null));
     }
 
     public class ListNode {
@@ -16,7 +16,21 @@ public class LeetCode_200_300 {
      ListNode() {}
      ListNode(int val) { this.val = val; }
      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- }
+    }
+
+    public boolean isPalindrome(ListNode head) { //234
+        if (head == null) return false;
+        List<Integer> list = new ArrayList<>();
+        while (head!=null) {
+            list.add(head.val);
+            head = head.next;
+        }
+        for (int i = 0; i < list.size()/2; i++) {
+            System.out.println(list.get(i) + "  " + list.get(list.size()-i-1) );
+            if (list.get(i) != list.get(list.size()-i-1)) return false;
+        }
+        return true;
+    }
     public ListNode reverseList(ListNode head) { //206
         if (head == null) return null;
         List<ListNode> list = new ArrayList<>();
