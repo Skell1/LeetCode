@@ -1,9 +1,9 @@
 package org.example;
 
 
-import java.util.*;
-
 import org.example.util.TreeNode;
+
+import java.util.*;
 
 public class LeetCode_100_200 {
     public static void main(String[] args) {
@@ -23,6 +23,20 @@ public class LeetCode_100_200 {
           next = null;
       }
   }
+
+    public void reorderList(ListNode head) { //143
+        List<ListNode> list = new ArrayList<>();
+        while (head!=null) {
+            list.add(head);
+            head = head.next;
+        }
+        for (int i = 0; i < list.size()/2; i++) {
+            list.get(i).next = list.get(list.size()-i-1);
+            list.get(list.size()-i-1).next = list.get(i+1);
+        }
+        list.get(list.size()/2).next = null;
+        head = list.get(0);
+    }
 
     public boolean hasCycle(ListNode head) { //141
         HashSet<ListNode> set = new HashSet<>();
