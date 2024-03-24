@@ -18,6 +18,16 @@ public class LeetCode_200_300 {
      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
+    public int findDuplicate(int[] nums) { //287
+        int[] temp = new int[nums.length+1];
+        Arrays.fill(temp,0);
+        for (int num : nums) {
+            if (temp[num] == 1) return num;
+            else temp[num]++;
+        }
+        return -1;
+    }
+
     public boolean isPalindrome(ListNode head) { //234
         if (head == null) return false;
         List<Integer> list = new ArrayList<>();
