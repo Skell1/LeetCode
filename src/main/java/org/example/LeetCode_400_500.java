@@ -1,11 +1,21 @@
 package org.example;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class LeetCode_400_500 {
     public static void main(String[] args) {
         frequencySort("tree");
+    }
+
+    public List<Integer> findDuplicates(int[] nums) { //442
+        int[] temp = new int[nums.length+1];
+        List<Integer> list = new ArrayList<>();
+        //Arrays.fill(temp,0);
+        for (int num : nums) {
+            temp[num]++;
+            if (temp[num] == 2) list.add(num);
+        }
+        return list;
     }
 
     public static String frequencySort(String s) { //451
