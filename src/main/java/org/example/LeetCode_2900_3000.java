@@ -4,7 +4,32 @@ import java.util.*;
 
 public class LeetCode_2900_3000 {
     public static void main(String[] args) {
-        System.out.println(findAllPeople(5, new int[][]{{3,4,2},{1,2,1},{2,3,1}} , 1));
+        System.out.println(new LeetCode_2900_3000().maxSubarrayLength(new int[]{1,4,4,3}, 1));
+    }
+
+    public int maxSubarrayLength(int[] nums, int k) { //2958
+        Map<Integer, Integer> map = new HashMap<>();
+        int left = 0, right = 0;
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                map.put(nums[i], map.get(nums[i])+1);
+            }
+            else map.put(nums[i],1);
+            if (map.get(nums[i]) <= k) {
+                right = i;
+            }
+            else {
+                max = Math.max(right - left+1, max);
+                while (nums[left] != nums[i]) {
+                    map.put(nums[left], map.get(nums[left])-1);
+                    left++;
+                }
+                map.put(nums[i], map.get(nums[i])-1);
+                left++;
+            }
+        }
+        return Math.max(right - left+1, max);
     }
     public static List<Integer> findAllPeople(int n, int[][] meetings, int firstPerson) { //2092
         Set<Integer> whoKnow = new HashSet<>();
