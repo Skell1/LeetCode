@@ -19,6 +19,11 @@ public class LeetCode_1_100 {
 
     }
 
+    public int lengthOfLastWord(String s) { //58
+        String[] array = s.split(" ");
+        return array[array.length-1].length();
+    }
+
         public int[][] insert(int[][] intervals, int[] newInterval) { //57
         List<int[]> list = new ArrayList<>();
         if (intervals.length == 0){
