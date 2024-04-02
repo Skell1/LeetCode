@@ -1,13 +1,10 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class LeetCode_200_300 {
     public static void main(String[] args) {
-        new LeetCode_200_300().isPalindrome((null));
+        new LeetCode_200_300().isIsomorphic("badc", "baba");
     }
 
     public class ListNode {
@@ -16,6 +13,23 @@ public class LeetCode_200_300 {
      ListNode() {}
      ListNode(int val) { this.val = val; }
      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    public boolean isIsomorphic(String s, String t) { //205
+        if (s.length()!=t.length()) return false;
+        Map<Character,Character> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                if (map.get(s.charAt(i))!=t.charAt(i)){
+                    return false;
+                }
+            }
+            else {
+                if (map.values().contains(t.charAt(i))) return false;
+                map.put(s.charAt(i),t.charAt(i));
+            }
+        }
+        return true;
     }
 
     public int findDuplicate(int[] nums) { //287
