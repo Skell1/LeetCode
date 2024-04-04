@@ -8,6 +8,20 @@ public class LeetCode_1600_1700 {
 
     }
 
+    public int maxDepth(String s) { //1614
+        int max = 0;
+        int curr = 0;
+        for (char ch : s.toCharArray()) {
+            if (ch == '(') {
+                curr++;
+            } else if (ch == ')') {
+                if (curr>max) max = curr;
+                curr--;
+            }
+        }
+        return max;
+    }
+
     public boolean closeStrings(String word1, String word2) { //1657
         if (word1.length()!=word2.length()) return false;
         int[] count1 = new int[26];
