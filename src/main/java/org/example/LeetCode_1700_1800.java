@@ -1,9 +1,25 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LeetCode_1700_1800 {
     public static void main(String[] args) {
 
-        System.out.println(minimumLength("bbbbbbbbbbbbbbbbbbbbbbbbbbbabbbbbbbbbbbbbbbccbcbcbccbbabbb"));
+        System.out.println(new LeetCode_1700_1800().countStudents(new int[]{1,1,1,0,0,1},new int[]{1,0,0,0,1,1}));
+    }
+
+    public int countStudents(int[] students, int[] sandwiches) { //1700
+        List<Integer> list = new ArrayList<>();
+        for (int student : students) {
+            list.add(student);
+        }
+        for (int i = 0; i < sandwiches.length; i++) {
+            if (list.contains(sandwiches[i])) list.remove(list.indexOf(sandwiches[i]));
+            else return list.size();
+        }
+        return 0;
+
     }
 
     public static int minimumLength(String s) { //1750
