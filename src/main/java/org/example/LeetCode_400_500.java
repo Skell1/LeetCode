@@ -4,8 +4,29 @@ import java.util.*;
 
 public class LeetCode_400_500 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_400_500().removeKdigits("1234567890", 9));
+        TreeNode node9 = new TreeNode(9, null, null);
+        TreeNode node15 = new TreeNode(15, null, null);
+        TreeNode node7 = new TreeNode(7, null, null);
+        TreeNode node20 = new TreeNode(20, node15, node7);
+
+        TreeNode root = new TreeNode(3, node9, node20);
+
+
+        System.out.println(new LeetCode_400_500().sumOfLeftLeaves(root));
     }
+
+      public static class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+  }
 
     public String removeKdigits(String num, int k) { //402
         StringBuilder sb = new StringBuilder(num);
@@ -27,6 +48,16 @@ public class LeetCode_400_500 {
         }
         if (sb.length()==0) return "0";
         return sb.toString();
+    }
+
+    public int sumOfLeftLeaves(TreeNode root) { //404
+        if (root == null) return 0;
+        int a;
+        if (root.left != null && root.left.left == null && root.left.right == null) a = root.left.val;
+        else
+        a = sumOfLeftLeaves(root.left);
+        int b = sumOfLeftLeaves(root.right);
+        return a+b;
     }
 
     public List<Integer> findDuplicates(int[] nums) { //442
