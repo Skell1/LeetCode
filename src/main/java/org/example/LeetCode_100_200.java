@@ -7,12 +7,13 @@ import java.util.*;
 
 public class LeetCode_100_200 {
     public static void main(String[] args) {
-        int[] a = new  int[] {1,2,3,4,5,6,7};
-        int[] b = new  int[] {-1,-100,3,99};
-        rotate(a,3);
+        TreeNode node2 = new TreeNode(2, null, null);
+        TreeNode node3 = new TreeNode(3, null, null);
+        TreeNode node0 = new TreeNode(0, null, null);
+        TreeNode node1 = new TreeNode(1,node0 ,null );
 
-        rotate(b,2);
-        new LeetCode_100_200().rob(new int[]{1,2,3,1});
+
+        new LeetCode_100_200().sumNumbers(node1);
     }
 
     class ListNode {
@@ -23,6 +24,22 @@ public class LeetCode_100_200 {
           next = null;
       }
   }
+
+    public int sumNumbers(TreeNode root) { //129
+        int summ = 0;
+        if (root.left== null && root.right== null)
+            return root.val;
+        if (root.left!= null) {
+            root.left.val = root.val * 10 + root.left.val;
+            summ += sumNumbers(root.left);
+        }
+        if (root.right!= null) {
+            root.right.val = root.val*10 + root.right.val;
+            summ += sumNumbers(root.right);
+        }
+        return summ;
+
+    }
 
     public void reorderList(ListNode head) { //143
         List<ListNode> list = new ArrayList<>();
