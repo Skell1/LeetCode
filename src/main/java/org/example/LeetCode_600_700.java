@@ -1,10 +1,33 @@
 package org.example;
 
+import org.example.util.TreeNode;
+
 import java.util.Arrays;
 
 public class LeetCode_600_700 {
     public static void main(String[] args) {
         System.out.println(Arrays.deepToString(imageSmoother(new int[][]{{100, 200, 100}, {200, 50, 200}, {100, 200, 100}})));
+    }
+
+    public TreeNode addOneRow(TreeNode root, int val, int depth) { //623
+        if (depth == 1) {
+            return new TreeNode(val, root, null);
+        }
+        if (root == null) return root;
+        if (depth ==2) {
+            TreeNode right = root.right;
+            TreeNode left = root.left;
+            root.right = new TreeNode(val, null, right);
+            root.left = new TreeNode(val, left, null);
+            return root;
+        }
+
+        addOneRow(root.left,val, depth-1);
+
+        addOneRow(root.right,val, depth-1);
+
+        return root;
+
     }
 
     public static int[][] imageSmoother(int[][] img) { //661
