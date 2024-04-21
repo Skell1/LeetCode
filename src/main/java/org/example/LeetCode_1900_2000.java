@@ -4,8 +4,32 @@ import java.util.Arrays;
 
 public class LeetCode_1900_2000 {
     public static void main(String[] args) {
-        System.out.println(maxProductDifference(new int[]{5,6,2,7,4}));
-        System.out.println(largestOddNumber("35427"));
+        System.out.println(new LeetCode_1900_2000().validPath(3, new int[][]{{0,1},{1,2},{2,0}} , 0 , 2));
+    }
+
+    public boolean validPath(int n, int[][] edges, int source, int destination) { //1971
+        int[] res = new int[n];
+        res[source] = 1;
+        boolean isChange = true;
+        while (isChange) {
+            if (res[destination] == 1) return true;
+            isChange = false;
+            for (int i = 0; i < edges.length; i++) {
+                if (edges[i] != null) {
+                    if (res[edges[i][0]] == 1) {
+                        res[edges[i][1]] = 1;
+                        edges[i] = null;
+                        isChange = true;
+                    } else if (res[edges[i][1]] == 1) {
+                        res[edges[i][0]] = 1;
+                        edges[i] = null;
+                        isChange = true;
+                    }
+                }
+            }
+        }
+        return res[destination] == 1;
+
     }
 
     public static int maxProductDifference(int[] nums) { //1913
