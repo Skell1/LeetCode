@@ -1,13 +1,35 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LeetCode_500_600 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_500_600().findMaxLength(new int[]{0,1,0,1}));
+        System.out.println(new LeetCode_500_600().findRelativeRanks(new int[]{5,4,3,2,1}));
+    }
+
+    public String[] findRelativeRanks(int[] score) { //506
+        int[] res = Arrays.copyOf(score, score.length);
+        score = Arrays.stream(score).boxed()
+                .sorted(Comparator.reverseOrder())
+                .mapToInt(Integer::intValue)
+                .toArray();
+        String[] result = new String[score.length];
+        for (int i = 0; i < score.length; i++) {
+            for (int j = 0; j < score.length; j++) {
+                if (res[i]==score[j]) {
+                    if (j>2) {
+                        result[i] = ""+(j+1);
+                    } else if (j==0) {
+                        result[i] = "Gold Medal";
+                    } else if (j==1) {
+                        result[i] = "Silver Medal";
+                    } else {
+                        result[i] = "Bronze Medal";
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     public int findMaxLength(int[] nums) { //525
