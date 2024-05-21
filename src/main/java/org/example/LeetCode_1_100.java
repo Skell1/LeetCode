@@ -4,19 +4,7 @@ import java.util.*;
 
 public class LeetCode_1_100 {
     public static void main(String[] args) {
-//        System.out.println(mySqrt(4));
-//        System.out.println(mySqrt(8));
-        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,5},{6,8}}, new int[]{3,7}));
-
-        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,5}}, new int[]{0,0}));
-
-        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,5}}, new int[]{0,3}));
-
-        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,5}}, new int[]{1,7}));
-
-        System.out.println(new LeetCode_1_100().insert(new int[][]{{1,2},{3,5},{6,7},{8,10},{12,16}}, new int[]{4,8}));
-
-
+        System.out.println(new LeetCode_1_100().subsets(new int[]{1,2}));
     }
 
     public int lengthOfLastWord(String s) { //58
@@ -150,5 +138,32 @@ public class LeetCode_1_100 {
             a[i] = a[i-1] + a[i-2];
         }
         return a[n-1];
+    }
+
+    public List<List<Integer>> subsets(int[] nums) { //78
+        List<List<Integer>> list = new ArrayList<>();
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        var b = getNext(nums, 0, new ArrayList<>());
+        arrayList.add(nums[0]);
+        var a = getNext(nums, 0, arrayList);
+        list.addAll(a);
+        list.addAll(b);
+        return list;
+    }
+
+    public List<List<Integer>> getNext(int[] nums, int i, ArrayList<Integer> list) {
+        List<List<Integer>> ret = new ArrayList<>();
+        i++;
+        if (i>nums.length-1) {
+            ret.add(list);
+        }
+        if (i<nums.length) {
+            var b = getNext(nums, i,new ArrayList<>(list));
+            list.add(nums[i]);
+            var a = getNext(nums, i, list);
+            ret.addAll(a);
+            ret.addAll(b);
+        }
+        return ret;
     }
 }

@@ -4,9 +4,7 @@ package org.example.util;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Data
 public class TreeNode {
@@ -20,6 +18,34 @@ public class TreeNode {
             this.left = left;
             this.right = right;
         }
+
+    public static TreeNode getRoot(Integer[] nodes) {
+        int n = nodes.length;
+
+        if (n == 0) return null;
+
+        ArrayList<TreeNode> parentStack = new ArrayList<>();
+        TreeNode root = new TreeNode(nodes[0]);
+        TreeNode curParent = root;
+        for (int i = 1; i < n; i++) {
+            if (i % 2 == 1) {
+                if (Objects.nonNull(nodes[i])) {
+                    curParent.left = new TreeNode(nodes[i]);
+                    parentStack.add(curParent.left);
+                }
+            } else {
+                if (Objects.nonNull(nodes[i])) {
+                    curParent.right = new TreeNode(nodes[i]);
+                    parentStack.add(curParent.right);
+                }
+            }
+            curParent = parentStack.get(0);
+            parentStack.remove(0);
+        }
+        return root;
+
+    }
+
 
     public static   List<List<Integer>> allNextByLevel(TreeNode root, Integer curr, List<List<Integer>> list){ //103
         if (root == null) {
