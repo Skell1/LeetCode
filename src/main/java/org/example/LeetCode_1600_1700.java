@@ -1,11 +1,22 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LeetCode_1600_1700 {
     public static void main(String[] args) {
+        new LeetCode_1600_1700().specialArray(new int[]{3,6,7,7,0});
+    }
 
+    public int specialArray(int[] nums) { //1608
+        Arrays.sort(nums);
+        int res = nums.length;
+        for (int i = 0; i < nums.length; i++) {
+            if (res<=nums[i] && (i==0 || res>nums[i-1])) return res;
+            else res--;
+        }
+        return -1;
     }
 
     public int maxDepth(String s) { //1614
