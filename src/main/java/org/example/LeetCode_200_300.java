@@ -15,6 +15,27 @@ public class LeetCode_200_300 {
      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
+    public static int rangeBitwiseAnd(int left, int right) { //201
+        String l = Integer.toBinaryString(left);
+        String r = Integer.toBinaryString(right);
+        if (l.length() != r.length()) return 0;
+        StringBuilder builder = new StringBuilder();
+        Boolean key = true;
+        for (int i = 0; i < l.length(); i++) {
+            if (key) {
+                if (l.charAt(i) == r.charAt(i))
+                    builder.append(l.charAt(i));
+                else {
+                    key = false;
+                    builder.append(0);
+                }
+            }
+            else builder.append(0);
+        }
+        int result = Integer.parseInt(builder.toString(), 2);
+        return result;
+    }
+
     public boolean isIsomorphic(String s, String t) { //205
         if (s.length()!=t.length()) return false;
         Map<Character,Character> map = new HashMap<>();
@@ -32,14 +53,66 @@ public class LeetCode_200_300 {
         return true;
     }
 
-    public int findDuplicate(int[] nums) { //287
-        int[] temp = new int[nums.length+1];
-        Arrays.fill(temp,0);
-        for (int num : nums) {
-            if (temp[num] == 1) return num;
-            else temp[num]++;
+    public ListNode reverseList(ListNode head) { //206
+        if (head == null) return null;
+        List<ListNode> list = new ArrayList<>();
+        while (head!=null) {
+            list.add(head);
+            head = head.next;
         }
-        return -1;
+
+        for (int i = list.size()-1; i >=1 ; i--) {
+            list.get(i).next = list.get(i-1);
+        }
+        list.get(0).next = null;
+        return list.get(list.size()-1);
+    }
+
+    public static boolean isPowerOfTwo(int n) { //231
+        if (n<=0) return false;
+        while (n > 2) {
+            if (n % 2 != 0)
+                return false;
+            n /= 2;
+        }
+        return true;
+
+    }
+
+    public static class MyQueue {  // 232
+
+        private int front;
+        private Stack<Integer> s1 = new Stack<>();
+        private Stack<Integer> s2 = new Stack<>();
+
+
+        public void push(int x) {
+            if (s1.isEmpty()){
+                front = x;
+            }
+            s1.push(x);
+        }
+
+        public int pop() {
+            if(s2.isEmpty()){
+                while(!s1.isEmpty()){
+                    s2.push(s1.pop());
+                }
+            }
+            return s2.pop();
+        }
+
+        public int peek() {
+            if (!s2.isEmpty()) {
+                return s2.peek();
+            }
+
+            return front;
+        }
+
+        public boolean empty() {
+            return (s1.isEmpty() && s2.isEmpty());
+        }
     }
 
     public boolean isPalindrome(ListNode head) { //234
@@ -55,20 +128,7 @@ public class LeetCode_200_300 {
         }
         return true;
     }
-    public ListNode reverseList(ListNode head) { //206
-        if (head == null) return null;
-        List<ListNode> list = new ArrayList<>();
-        while (head!=null) {
-            list.add(head);
-            head = head.next;
-        }
 
-        for (int i = list.size()-1; i >=1 ; i--) {
-            list.get(i).next = list.get(i-1);
-        }
-        list.get(0).next = null;
-        return list.get(list.size()-1);
-    }
 
     public int[] productExceptSelf(int[] nums) { //238
         int zeros = 0;
@@ -118,71 +178,13 @@ public class LeetCode_200_300 {
         return 0;
     }
 
-    public static int rangeBitwiseAnd(int left, int right) { //201
-        String l = Integer.toBinaryString(left);
-        String r = Integer.toBinaryString(right);
-        if (l.length() != r.length()) return 0;
-        StringBuilder builder = new StringBuilder();
-        Boolean key = true;
-        for (int i = 0; i < l.length(); i++) {
-            if (key) {
-                if (l.charAt(i) == r.charAt(i))
-                    builder.append(l.charAt(i));
-                else {
-                    key = false;
-                    builder.append(0);
-                }
-            }
-            else builder.append(0);
+    public int findDuplicate(int[] nums) { //287
+        int[] temp = new int[nums.length+1];
+        Arrays.fill(temp,0);
+        for (int num : nums) {
+            if (temp[num] == 1) return num;
+            else temp[num]++;
         }
-        int result = Integer.parseInt(builder.toString(), 2);
-        return result;
-    }
-
-    public static boolean isPowerOfTwo(int n) { //231
-        if (n<=0) return false;
-        while (n > 2) {
-            if (n % 2 != 0)
-                return false;
-            n /= 2;
-        }
-        return true;
-
-    }
-
-    public static class MyQueue {  // 232
-
-        private int front;
-        private Stack<Integer> s1 = new Stack<>();
-        private Stack<Integer> s2 = new Stack<>();
-
-
-        public void push(int x) {
-            if (s1.isEmpty()){
-                front = x;
-            }
-            s1.push(x);
-        }
-
-        public int pop() {
-            if(s2.isEmpty()){
-                while(!s1.isEmpty()){
-                    s2.push(s1.pop());
-                }
-            }
-            return s2.pop();
-        }
-
-        public int peek() {
-            if (!s2.isEmpty()) {
-                return s2.peek();
-            }
-
-            return front;
-        }
-
-        public boolean empty() {
-            return (s1.isEmpty() && s2.isEmpty());
-        }
+        return -1;
     }
 }
