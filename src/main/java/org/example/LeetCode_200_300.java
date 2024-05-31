@@ -156,6 +156,17 @@ public class LeetCode_200_300 {
         return nums;
     }
 
+    public int[] singleNumber(int[] nums) { //260
+        HashSet<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (set.contains(nums[i])) {
+                set.remove(nums[i]);
+            }
+            else set.add(nums[i]);
+        }
+        return set.stream().mapToInt(i->i).toArray();
+    }
+
     public static int missingNumber1(int[] nums) {//268
         int ans = nums.length;
 
