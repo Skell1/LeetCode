@@ -8,6 +8,27 @@ public class LeetCode_300_400 {
         System.out.println(firstUniqChar("aabb"));
     }
 
+    public static boolean isPowerOfFour(int n) {//342
+        if (n< 0 ) return false;
+        while (n >= 4 || n <= -4) {
+            if (n % 4 != 0) return false;
+            n /= 4;
+        }
+        if (n == 1) {
+            return true;
+        }
+        else return false;
+    }
+
+    public void reverseString(char[] s) { //344
+        char temp;
+        for (int i = 0; i < s.length / 2; i++) {
+            temp = s[i];
+            s[i] = s[s.length - 1 - i];
+            s[s.length - 1 - i] = temp;
+        }
+    }
+
     public int[] intersection(int[] nums1, int[] nums2) { //349
         Set<Integer> set = new HashSet<>();
         for (int i = 0; i < nums1.length; i++) {
@@ -20,34 +41,6 @@ public class LeetCode_300_400 {
         }
         return set.stream().mapToInt(v -> v).toArray();
 
-    }
-    public static int firstUniqChar(String s) { //387
-        int ans = Integer.MAX_VALUE;
-        for(char c='a'; c<='z';c++){
-            int index = s.indexOf(c);
-            if(index!=-1&&index==s.lastIndexOf(c)){
-                ans = Math.min(ans,index);
-            }
-        }
-
-        return ans==Integer.MAX_VALUE?-1:ans;
-    }
-    public static int firstUniqChar1(String s) {//387 Мой первый
-        int[] array = new int[128];
-        Arrays.fill(array, -1);
-        int index;
-        for (int i = 0; i < s.length(); i++) {
-            index = s.charAt(i);
-            if (array[index] >= 0 || array[index] == -2) {
-                array[index] = -2;
-            }
-            else array[index] = i;
-        }
-        int result = Integer.MAX_VALUE;
-        for (int a : array){
-            if (a > -1 && a < result) result = a;
-        }
-        return result == Integer.MAX_VALUE ? -1 : result;
     }
 
     class RandomizedSet { //380
@@ -94,15 +87,33 @@ public class LeetCode_300_400 {
         }
     }
 
-    public static boolean isPowerOfFour(int n) {//342
-        if (n< 0 ) return false;
-       while (n >= 4 || n <= -4) {
-            if (n % 4 != 0) return false;
-            n /= 4;
+    public static int firstUniqChar(String s) { //387
+        int ans = Integer.MAX_VALUE;
+        for(char c='a'; c<='z';c++){
+            int index = s.indexOf(c);
+            if(index!=-1&&index==s.lastIndexOf(c)){
+                ans = Math.min(ans,index);
+            }
         }
-        if (n == 1) {
-            return true;
-        }
-        else return false;
+
+        return ans==Integer.MAX_VALUE?-1:ans;
     }
+    public static int firstUniqChar1(String s) {//387 Мой первый
+        int[] array = new int[128];
+        Arrays.fill(array, -1);
+        int index;
+        for (int i = 0; i < s.length(); i++) {
+            index = s.charAt(i);
+            if (array[index] >= 0 || array[index] == -2) {
+                array[index] = -2;
+            }
+            else array[index] = i;
+        }
+        int result = Integer.MAX_VALUE;
+        for (int a : array){
+            if (a > -1 && a < result) result = a;
+        }
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+
 }
