@@ -29,6 +29,19 @@ public class LeetCode_2400_2500 {
         return (a+b)*(b-a+1)/2;
     }
 
+    public int appendCharacters(String s, String t) { //2486
+        //int max = 0;
+        int curr = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == t.charAt(curr)) {
+                curr+=1;
+                //if (curr > max) max = curr;
+                if (curr == t.length()) return  0;
+            }
+        }
+        return t.length()-curr;
+    }
+
     // 5,2,12,3,8
     public ListNode removeNodes(ListNode head) { //2487
         int a = head.val;
