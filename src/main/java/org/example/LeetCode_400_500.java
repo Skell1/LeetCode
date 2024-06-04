@@ -60,6 +60,27 @@ public class LeetCode_400_500 {
         return a+b;
     }
 
+    public int longestPalindrome(String s) { //409
+        if (s.length() < 2) return s.length();
+            HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        }
+        int max = 0;
+        Boolean dop = false;
+        for (Integer entry : map.values()) {
+            if (entry >= 2) {
+                max += entry - entry%2;
+            }
+            if (!dop) {
+                if (entry % 2 != 0) {
+                    dop = true;
+                }
+            }
+        }
+        return dop ? max+1 : max;
+    }
+
     public List<Integer> findDuplicates(int[] nums) { //442
         int[] temp = new int[nums.length+1];
         List<Integer> list = new ArrayList<>();
