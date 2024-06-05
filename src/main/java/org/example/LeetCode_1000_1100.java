@@ -7,6 +7,36 @@ import java.util.List;
 
 public class LeetCode_1000_1100 {
     public static void main(String[] args) {
+        System.out.println(new LeetCode_1000_1100().commonChars(new String[]{"bella","label","roller"}));
+    }
+
+    public List<String> commonChars(String[] words) { //1002
+        int[] t = new int[26];
+        for (char c : words[0].toCharArray()) {
+            t[c - 'a']++;
+        }
+
+        int[] q;
+        for (int i = 1; i < words.length; i++) {
+            q = new int[26];
+            for (char c : words[i].toCharArray()) {
+                q[c - 'a']++;
+            }
+            for (int j = 0; j < 26; j++) {
+                if (t[j] > q[j]) {
+                    t[j] = q[j];
+                }
+            }
+        }
+        List<String> res = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            if (t[i] > 0) {
+                for (int j = 0; j < t[i]; j++) {
+                    res.add(String.valueOf((char) (i+'a')));
+                }
+            }
+        }
+        return res;
     }
 
     public static int maxAncestorDiff(TreeNode root) {
