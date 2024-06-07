@@ -1,10 +1,26 @@
 package org.example;
 
-import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class LeetCode_600_700 {
     public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(imageSmoother(new int[][]{{100, 200, 100}, {200, 50, 200}, {100, 200, 100}})));
+        System.out.println(new LeetCode_600_700().replaceWords(List.of("cat","bat","rat"), "the cattle was rattled by the battery"));
+    }
+
+    public String replaceWords(List<String> dictionary, String sentence) { //648
+        String[] words = sentence.split(" ");
+        dictionary = dictionary.stream().sorted(Comparator.comparingInt(String::length)).toList();
+
+        for (int i = 0; i < words.length; i++) {
+            for (String d : dictionary) {
+                if (words[i].startsWith(d)) {
+                    words[i] = d;
+                    break;
+                }
+            }
+        }
+        return String.join(" ", words);
     }
 
     public static int[][] imageSmoother(int[][] img) { //661
