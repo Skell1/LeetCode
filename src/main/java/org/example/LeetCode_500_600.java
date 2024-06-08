@@ -4,7 +4,8 @@ import java.util.*;
 
 public class LeetCode_500_600 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_500_600().findRelativeRanks(new int[]{5,4,3,2,1}));
+        System.out.println(new LeetCode_500_600().checkSubarraySum(new int[]{0,1,0,3,0,4,0,4,0}
+                , 5));
     }
 
     public String[] findRelativeRanks(int[] score) { //506
@@ -30,6 +31,27 @@ public class LeetCode_500_600 {
             }
         }
         return result;
+    }
+
+    public boolean checkSubarraySum(int[] nums, int k) { //523
+        Map<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            sum %= k;
+            if (sum == 0 && i > 0) {
+                return true;
+            }
+            if (map.containsKey(sum) && i - map.get(sum) > 1) {
+                return true;
+            }
+            if (!map.containsKey(sum)) {
+                map.put(sum, i);
+            }
+
+        }
+        return false;
+
     }
 
     public int findMaxLength(int[] nums) { //525
