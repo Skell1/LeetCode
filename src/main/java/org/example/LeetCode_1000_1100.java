@@ -3,6 +3,7 @@ package org.example;
 import org.example.util.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LeetCode_1000_1100 {
@@ -39,6 +40,15 @@ public class LeetCode_1000_1100 {
         return res;
     }
 
+    public int heightChecker(int[] heights) { //1051
+        int[] arr = Arrays.copyOf(heights, heights.length);
+        Arrays.sort(arr);
+        int count = 0;
+        for (int i = 1; i < heights.length; i++) {
+            if (heights[i] != arr[i]) count++;
+        }
+        return count;
+    }
     public static int maxAncestorDiff(TreeNode root) {
         return nextTreeNode(root, root.val, root.val);
     }
