@@ -140,6 +140,10 @@ public class LeetCode_1_100 {
         return a[n-1];
     }
 
+    public void sortColors(int[] nums) { //75
+        Arrays.sort(nums);
+    }
+
     public List<List<Integer>> subsets(int[] nums) { //78
         List<List<Integer>> list = new ArrayList<>();
         ArrayList<Integer> arrayList = new ArrayList<>();
