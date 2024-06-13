@@ -1,8 +1,20 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class LeetCode_2000_2100 {
     public static void main(String[] args) {
         System.out.println(new LeetCode_2000_2100().timeRequiredToBuy(new int[]{3,1,-2,-5,2,-4}, 2));
+    }
+
+    public int minMovesToSeat(int[] seats, int[] students) { //2037
+        Arrays.sort(seats);
+        Arrays.sort(students);
+        int res = 0;
+        for (int i = 0; i < seats.length; i++) {
+            res += Math.abs(seats[i] - students[i]);
+        }
+        return res;
     }
 
     public int timeRequiredToBuy(int[] tickets, int k) { //2073
