@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LeetCode_1000_1100 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_1000_1100().commonChars(new String[]{"bella","label","roller"}));
+        System.out.println(new LeetCode_1000_1100().maxSatisfied(new int[]{1,0,1,2,1,1,7,5}, new int[]{0,1,0,1,0,1,0,1}, 3));
     }
 
     public List<String> commonChars(String[] words) { //1002
@@ -49,6 +49,30 @@ public class LeetCode_1000_1100 {
         }
         return count;
     }
+
+    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) { //1052
+        int result = 0;
+        int max = 0;
+        int curr = 0;
+        for (int i = 0; i < customers.length; i++) {
+            if (grumpy[i] == 0) {
+                result += customers[i];
+            } else {
+                curr = 0;
+                for (int j = i; j < i+minutes && j<customers.length; j++) {
+                    if (grumpy[j] == 1) {
+                        curr += customers[j];
+                    }
+                }
+                if (curr > max) {
+                    max = curr;
+                }
+            }
+        }
+        return result+max;
+    }
+
+
     public static int maxAncestorDiff(TreeNode root) {
         return nextTreeNode(root, root.val, root.val);
     }
