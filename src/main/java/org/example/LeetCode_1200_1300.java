@@ -7,9 +7,16 @@ import java.util.List;
 
 public class LeetCode_1200_1300 {
     public static void main(String[] args) {
-        int[] a = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,12,12,12};
-     //   System.out.println(sequentialDigits(8511,23553));
-        System.out.println(sequentialDigits(1000,13000));
+        int[] a = new int[]{1,1,2,1,1}; //3  2
+        int[] b = new int[]{2,2,2,1,2,2,1,2,2,2}; //2  16
+        int[] c = new int[]{2044,96397,50143}; //1
+
+
+        //   System.out.println(sequentialDigits(8511,23553));
+        //System.out.println(new LeetCode_1200_1300().numberOfSubarrays(a,3));
+        System.out.println(new LeetCode_1200_1300().numberOfSubarrays(b,2));
+
+        //System.out.println(new LeetCode_1200_1300().numberOfSubarrays(c,1));
 
         //System.out.println();
     }
@@ -52,6 +59,26 @@ public class LeetCode_1200_1300 {
         Collection<Integer> list = map.values();
         List<Integer> list1 = map.values().stream().distinct().toList();
         return map.values().size() == map.values().stream().distinct().toList().size();
+    }
+
+    public int numberOfSubarrays(int[] nums, int k) { //1248
+        int curr = 0;
+        int res = 0;
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) {
+                curr++;
+            } else {
+                list.add(curr);
+                curr = 0;
+            }
+        }
+        list.add(curr);
+        for (int i = 0; i+k < list.size(); i++) {
+            res+= (list.get(i)+1) * (list.get(i + k)+1);
+        }
+        //res+= list.size() % k;
+        return res;
     }
 
     public static int findSpecialInteger(int[] arr) { //1287
