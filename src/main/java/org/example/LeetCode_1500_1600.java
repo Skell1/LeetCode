@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class LeetCode_1500_1600 {
     public static void main(String[] args) {
         //System.out.println(new LeetCode_1500_1600().maxDistance(new int[]{1,2,3,4,5,6,7,8,9,10}, 4));
-        System.out.println(new LeetCode_1500_1600().maxDistance(new int[]{94,95,37,30,67,7,5,44,26,55,42,28,97,19,100,74,13,88,18}, 7));
+        System.out.println(new LeetCode_1500_1600().minDifference(new int[]{1,5,0,10,14}));
 
         //   System.out.println(new LeetCode_1500_1600().maxDistance(new int[]{79,74,57,22}, 4));
 
@@ -14,6 +14,15 @@ public class LeetCode_1500_1600 {
 
         //1011011  5
         //11100  2
+    }
+
+    public int minDifference(int[] nums) { //1509
+        if (nums.length <= 4 ) return 0;
+        Arrays.sort(nums);
+        return Math.min(
+                Math.min(nums[nums.length-1] - nums[3],nums[nums.length-2] - nums[2]),
+                Math.min(nums[nums.length-3] - nums[1],nums[nums.length-4] - nums[0]));
+
     }
 
     public String makeGood(String s) { //1544
