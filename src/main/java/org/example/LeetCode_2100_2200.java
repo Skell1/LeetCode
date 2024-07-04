@@ -1,8 +1,24 @@
 package org.example;
 
+import org.example.util.ListNode;
+
 public class LeetCode_2100_2200 {
     public static void main(String[] args) {
-        System.out.println(rearrangeArray(new int[]{3,1,-2,-5,2,-4}));
+        ListNode head = new ListNode(0, new ListNode(3, new ListNode(1, new ListNode(0, new ListNode(4, new ListNode(5,new ListNode(2,new ListNode(0))))))));
+        System.out.println(new LeetCode_2100_2200().mergeNodes(head));
+    }
+
+
+
+    public static String firstPalindrome(String[] words) {//2108
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].contentEquals(stringBuilder.append(words[i]).reverse())) {
+                return words[i];
+            }
+            stringBuilder.setLength(0);
+        }
+        return "";
     }
 
     public static int[] rearrangeArray(int[] a) {// 2149
@@ -21,15 +37,24 @@ public class LeetCode_2100_2200 {
         return ans;
     }
 
-    public static String firstPalindrome(String[] words) {//2108
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < words.length; i++) {
-            if (words[i].contentEquals(stringBuilder.append(words[i]).reverse())) {
-                return words[i];
+    public ListNode mergeNodes(ListNode head) { //2181
+        ListNode result = new ListNode();
+        ListNode res = result;
+        int curr = 0;
+        head = head.next;
+        while (head.next != null) {
+            if (head.val == 0) {
+                res.val = curr;
+                curr = 0;
+                res.next = new ListNode();
+                res = res.next;
+            } else {
+                curr+= head.val;
             }
-            stringBuilder.setLength(0);
+            head = head.next;
         }
-        return "";
+        res.val = curr;
+        return result;
     }
 
 }
