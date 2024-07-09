@@ -6,7 +6,7 @@ import java.util.List;
 public class LeetCode_1700_1800 {
     public static void main(String[] args) {
 
-        System.out.println(new LeetCode_1700_1800().countStudents(new int[]{1,1,1,0,0,1},new int[]{1,0,0,0,1,1}));
+        System.out.println(new LeetCode_1700_1800().averageWaitingTime(new int[][]{{5,2},{5,4},{10,3},{20,1}}));
     }
 
     public int countStudents(int[] students, int[] sandwiches) { //1700
@@ -20,6 +20,18 @@ public class LeetCode_1700_1800 {
         }
         return 0;
 
+    }
+
+    public double averageWaitingTime(int[][] customers) { //1701
+        double sum = 0;
+        int curr = customers[0][0];
+        for (int[] customer : customers) {
+            if (customer[0]>curr) curr = customer[0];
+            curr += customer[1];
+            System.out.println(curr-customer[0]);
+            sum += curr-customer[0];
+        }
+        return sum/customers.length;
     }
 
     public static int minimumLength(String s) { //1750
