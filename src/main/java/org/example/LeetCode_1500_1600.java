@@ -76,4 +76,18 @@ public class LeetCode_1500_1600 {
         return bin;
     }
 
+    public int minOperations(String[] logs) {//1598
+        int count = 0;
+        for (String log : logs) {
+            if (log.equals("../")) {
+                if (count > 0) count--;
+            } else if (log.equals("./")) {
+
+            } else  {
+                count++;
+            }
+        }
+        return count;
+    }
+
 }
