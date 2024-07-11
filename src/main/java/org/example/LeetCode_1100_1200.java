@@ -1,9 +1,12 @@
 package org.example;
 
+import java.util.Stack;
+
 public class LeetCode_1100_1200 {
     public static void main(String[] args) {
         //System.out.println(longestCommonSubsequence("abcde", "ace"));
-        System.out.println(longestCommonSubsequence("oooooooooo", "ooo"));
+        System.out.println(new LeetCode_1100_1200().reverseParentheses("(ed(et(oc))el)"));
+     //   System.out.println(new LeetCode_1100_1200().reverseParentheses("s()uteawj((eg))"));
 
     }
 
@@ -38,5 +41,27 @@ public class LeetCode_1100_1200 {
         // common subsequence of text1 and text2
         return dp[length1][length2];
     }
+
+    public String reverseParentheses(String s) { //1190
+        Stack<Integer> stack = new Stack<>();
+        int a;
+        StringBuilder res = new StringBuilder(s);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < res.length(); i++) {
+            if (res.charAt(i) == '(') {
+                stack.push(i);
+            } else if (res.charAt(i) == ')') {
+                a = stack.pop();
+                sb.setLength(0);
+                sb.append(res.substring(a+1,i));
+                sb.reverse();
+                res.replace(a,i+1,sb.toString());
+                i-=2;
+            }
+        }
+
+        return res.toString();
+    }
+
 }
 
