@@ -6,7 +6,43 @@ import java.util.List;
 
 public class LeetCode_1600_1700 {
     public static void main(String[] args) {
-        new LeetCode_1600_1700().specialArray(new int[]{3,6,7,7,0});
+        new LeetCode_1600_1700().restoreMatrix(new int[]{14,9}, new int[]{6,9,8});
+
+       // new LeetCode_1600_1700().restoreMatrix(new int[]{5,7,10}, new int[]{8,6,8});
+    }
+
+    public int[][] restoreMatrix(int[] rowSum, int[] colSum) { //1605
+        int[][] res = new int[rowSum.length][colSum.length];
+
+        int i,j;
+        int min;
+        int minRowSum;
+        int minColSum;
+        do {
+            i = -1; j = -1;
+            minRowSum = Integer.MAX_VALUE;
+            minColSum = Integer.MAX_VALUE;
+            for (int k = 0; k < colSum.length; k++) {
+                if (colSum[k] != 0 && colSum[k] < minColSum) {
+                    minColSum = colSum[k];
+                    i = k;
+                }
+            }
+            for (int k = 0; k < rowSum.length; k++) {
+                if (rowSum[k] != 0 && rowSum[k] < minRowSum) {
+                    minRowSum = rowSum[k];
+                    j = k;
+                }
+            }
+        if (i == -1) break;
+        min = Math.min(minRowSum, minColSum);
+        res[j][i] = min;
+        rowSum[j] -= min;
+        colSum[i] -= min;
+        } while (true);
+
+        return res;
+
     }
 
     public int specialArray(int[] nums) { //1608
