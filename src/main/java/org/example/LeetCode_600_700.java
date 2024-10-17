@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LeetCode_600_700 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_600_700().replaceWords(List.of("cat","bat","rat"), "the cattle was rattled by the battery"));
+        System.out.println(new LeetCode_600_700().maximumSwap(2736));
     }
 
     public String replaceWords(List<String> dictionary, String sentence) { //648
@@ -75,6 +75,28 @@ public class LeetCode_600_700 {
         }
         System.gc();
         return result;
+    }
+
+    public int maximumSwap(int num) { //670
+        StringBuilder s = new StringBuilder(String.valueOf(num));
+        char ch = '9';
+        int i,j;
+        for (i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '9') continue;
+            while (s.charAt(i) < ch) {
+                for (j = s.length()-1 ; j > i; j--) {
+                    if (s.charAt(j) == ch) {
+                        char temp = s.charAt(j);
+                        s.setCharAt(j, s.charAt(i));
+                        s.setCharAt(i, temp);
+                        return Integer.parseInt(s.toString());
+                    }
+                }
+                ch--;
+            }
+        }
+        return Integer.parseInt(s.toString());
+
     }
 
 }
