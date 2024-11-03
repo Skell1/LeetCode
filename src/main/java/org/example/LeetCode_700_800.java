@@ -81,13 +81,19 @@ public class LeetCode_700_800 {
         if (s.length() != goal.length()) return false;
         if (s.equals(goal)) return true;
         StringBuilder sb = new StringBuilder(s);
-        //char ch;
         for (int i = 0; i < goal.length(); i++) {
-            //ch = sb.charAt(i);
             sb.append(sb.charAt(0));
             sb.deleteCharAt(0);
             if (sb.toString().equals(goal)) return true;
         }
         return false;
+
+        //best
+//        if(s.length()!=goal.length())
+//            return false;
+//        String str=s+s;
+//        if(str.contains(goal))
+//            return true;
+//        return false;
     }
 }
