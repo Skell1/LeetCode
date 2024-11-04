@@ -13,4 +13,25 @@ public class LeetCode_3100_3200 {
         }
         return res;
     }
+
+    public String compressedString(String word) { //3163
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+        char ch = word.charAt(0);
+        for (int i = 1; i < word.length(); i++) {
+            if (ch == word.charAt(i)) {
+                count++;
+                if (count > 8) {
+                    sb.append(count).append(ch);
+                    count = 0;
+                }
+            } else {
+                if (count > 0) sb.append(count).append(ch);
+                count = 1;
+                ch = word.charAt(i);
+            }
+        }
+        if (count > 0) sb.append(count).append(ch);
+        return sb.toString();
+    }
 }
