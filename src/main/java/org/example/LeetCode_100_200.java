@@ -22,7 +22,24 @@ public class LeetCode_100_200 {
           val = x;
           next = null;
       }
-  }
+    }
+
+    public int sumNumbers(TreeNode root) { //129
+        int summ = 0;
+        if (root.left== null && root.right== null)
+            return root.val;
+        if (root.left!= null) {
+            root.left.val = root.val * 10 + root.left.val;
+            summ += sumNumbers(root.left);
+        }
+        if (root.right!= null) {
+            root.right.val = root.val*10 + root.right.val;
+            summ += sumNumbers(root.right);
+        }
+
+
+        return summ;
+    }
 
     public void reorderList(ListNode head) { //143
         List<ListNode> list = new ArrayList<>();
