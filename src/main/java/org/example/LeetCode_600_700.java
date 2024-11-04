@@ -1,11 +1,34 @@
 package org.example;
 
+import org.example.util.TreeNode;
+
 import java.util.Comparator;
 import java.util.List;
 
 public class LeetCode_600_700 {
     public static void main(String[] args) {
         System.out.println(new LeetCode_600_700().maximumSwap(2736));
+    }
+
+    public TreeNode addOneRow(TreeNode root, int val, int depth) { //623
+        if (depth == 1) {
+            return new TreeNode(val, root, null);
+        }
+        if (root == null) return root;
+        if (depth ==2) {
+            TreeNode right = root.right;
+            TreeNode left = root.left;
+            root.right = new TreeNode(val, null, right);
+            root.left = new TreeNode(val, left, null);
+            return root;
+        }
+
+        addOneRow(root.left,val, depth-1);
+
+        addOneRow(root.right,val, depth-1);
+
+        return root;
+
     }
 
     public String replaceWords(List<String> dictionary, String sentence) { //648
