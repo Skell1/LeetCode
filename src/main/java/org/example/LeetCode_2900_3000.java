@@ -7,6 +7,14 @@ public class LeetCode_2900_3000 {
         System.out.println(new LeetCode_2900_3000().maxSubarrayLength(new int[]{1,4,4,3}, 1));
     }
 
+    public int minChanges(String s) { //2914
+        int count = 0;
+        for (int i = 0; i < s.length(); i+=2) {
+            if (s.charAt(i) != s.charAt(i+1)) count++;
+        }
+        return count;
+    }
+
     public int maxSubarrayLength(int[] nums, int k) { //2958
         Map<Integer, Integer> map = new HashMap<>();
         int left = 0, right = 0;
