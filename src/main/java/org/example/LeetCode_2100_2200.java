@@ -2,6 +2,8 @@ package org.example;
 
 import org.example.util.ListNode;
 
+import java.util.Arrays;
+
 public class LeetCode_2100_2200 {
     public static void main(String[] args) {
         ListNode head = new ListNode(0, new ListNode(3, new ListNode(1, new ListNode(0, new ListNode(4, new ListNode(5,new ListNode(2,new ListNode(0))))))));
@@ -55,6 +57,14 @@ public class LeetCode_2100_2200 {
         }
         res.val = curr;
         return result;
+    }
+
+    public int prefixCount(String[] words, String pref) { //2185
+        int count = 0;
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].startsWith(pref)) count++;
+        }
+        return count;
     }
 
 }
