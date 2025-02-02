@@ -3,7 +3,7 @@ package org.example;
 public class LeetCode_1700_1800 {
     public static void main(String[] args) {
 
-        System.out.println(minOperations("1111"));
+        System.out.println(new LeetCode_1700_1800().check(new int[]{3,4,5,1,2}));
     }
 
     public static int totalMoney(int n) { //1716
@@ -16,6 +16,22 @@ public class LeetCode_1700_1800 {
             week++;
         }
         return k;
+    }
+
+    public boolean check(int[] nums) { //1752
+        boolean newStrart = false;
+
+        for (int i = 0; i < nums.length-1; i++) {
+            if (nums[i] > nums[i+1]) {
+                if (newStrart) return false;
+                newStrart = true;
+            }
+        }
+        if (newStrart) {
+            return nums[nums.length-1] <= nums[0];
+        }
+        return true;
+
     }
 
     public static int minOperations(String s) { //1758
