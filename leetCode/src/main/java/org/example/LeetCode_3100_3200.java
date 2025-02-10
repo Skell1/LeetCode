@@ -2,7 +2,7 @@ package org.example;
 
 public class LeetCode_3100_3200 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3100_3200().longestMonotonicSubarray(new int[]{3,2,1}));
+        System.out.println(new LeetCode_3100_3200().clearDigits("cb34"));
     }
 
     public int longestMonotonicSubarray(int[] nums) { //3105
@@ -51,6 +51,18 @@ public class LeetCode_3100_3200 {
             }
         }
         return true;
+    }
+
+    public String clearDigits(String s) { //3174
+        StringBuilder sb = new StringBuilder(s);
+        for (int i = 1; i < sb.length(); i++) {
+            if (sb.charAt(i) >= '0' && sb.charAt(i) <= '9') {
+                sb.deleteCharAt(i);
+                sb.deleteCharAt(i-1);
+                i-=2;
+            }
+        }
+        return sb.toString();
     }
 
 }
