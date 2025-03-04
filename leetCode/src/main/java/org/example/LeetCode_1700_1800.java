@@ -1,9 +1,12 @@
 package org.example;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class LeetCode_1700_1800 {
     public static void main(String[] args) {
 
-        System.out.println(new LeetCode_1700_1800().check(new int[]{3,4,5,1,2}));
+        System.out.println(new LeetCode_1700_1800().checkPowersOfThree(21));
     }
 
     public static int totalMoney(int n) { //1716
@@ -49,5 +52,29 @@ public class LeetCode_1700_1800 {
             }
         }
         return Math.min(k0, k1);
+    }
+
+    public boolean checkPowersOfThree(int n) { //1780
+        Set<Integer> set = new HashSet<>();
+        while (n >= 3) {
+            int s = 1;
+            for (int i = 0; i < 16; i++) {
+                s = s*3;
+                if (s==n) {
+                    if (set.contains(s)) return false;
+                    n = n-s;
+                    set.add(s);
+                    break;
+                }
+                if (s>=n) {
+                    s = s/3;
+                    if (set.contains(s)) return false;
+                    n = n-s;
+                    set.add(s);
+                    break;
+                }
+            }
+        }
+        return n == 2 ? false : true;
     }
 }
