@@ -11,16 +11,22 @@ public class LeetCode_2300_2400 {
 
     }
 
-    public static int amountOfTime(TreeNode root, int start) {
-        int toStart;
-        int maxL, maxR;
-        boolean isToStart = false;
+    public int minimumRecolors(String blocks, int k) { //2379
+        int min = k;
+        int curr = 0;
+        for (int i = 0; i < k; i++) {
+            if (blocks.charAt(i) == 'W') curr++;
+        }
+        if (curr < min) min = curr;
 
-        return 0;
-    }
 
-    public void convert(TreeNode current, int parent, Map<Integer, Set<Integer>> map){
-        if (map.containsKey(current.val));
+        for (int i = k; i < blocks.length(); i++) {
+            if (blocks.charAt(i) == 'W') curr++;
+            if (blocks.charAt(i-k) == 'W') curr--;
+            if (curr < min) min = curr;
+        }
+        return min;
+
     }
 
 
