@@ -2,9 +2,18 @@ package org.example;
 
 public class LeetCode_3300_3400 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3300_3400().minimumOperations(new int[]{1,2,3,4,2,3,3,5,7}));
-        System.out.println(new LeetCode_3300_3400().minimumOperations(new int[]{4,5,6,4,4}));
-        System.out.println(new LeetCode_3300_3400().minimumOperations(new int[]{6,7,8,9}));
+        System.out.println(new LeetCode_3300_3400().countSubarrays(new int[]{-1,-4,-1,4}));
+
+    }
+
+    public int countSubarrays(int[] nums) { //3392
+        int result = 0;
+        for (int i = 0; i < nums.length-2; i++) {
+            if (nums[i] + nums[i+2] == nums[i+1]/2d) {
+                result++;
+            }
+        }
+        return result;
 
     }
 
