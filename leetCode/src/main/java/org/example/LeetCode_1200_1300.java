@@ -1,13 +1,14 @@
 package org.example;
 
 import java.util.*;
-import java.util.stream.Collectors;
+import org.example.util.ListNode;
 
 public class LeetCode_1200_1300 {
     public static void main(String[] args) {
-        int[] a = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,12,12,12};
-        System.out.println(findSpecialInteger(a));
-        System.out.println(findSpecialInteger(new int[]{1,2,2,6,6,6,6,7,10}));
+        ListNode a = new ListNode(1,null);
+        ListNode b = new ListNode(0,a);
+        ListNode c = new ListNode(1,b);
+        System.out.println(getDecimalValue(c));
     }
 
     public boolean uniqueOccurrences(int[] arr) { //1207
@@ -30,5 +31,14 @@ public class LeetCode_1200_1300 {
             }
         }
         return 0;
+    }
+
+    public static int getDecimalValue(ListNode head) { //1290
+        int res = 0;
+        while (head != null) {
+            res = res * 2 + head.getVal();
+            head = head.getNext();
+        }
+        return res;
     }
 }
