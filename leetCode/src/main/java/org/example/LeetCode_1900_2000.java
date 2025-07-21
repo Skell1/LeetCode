@@ -29,4 +29,15 @@ public class LeetCode_1900_2000 {
         System.gc();
         return nums[nums.length-1]*nums[nums.length-2]-nums[1]*nums[0];
     }
+
+    public String makeFancyString(String s) { //1957
+        StringBuilder sb = new StringBuilder(s);
+        for (int i = 2; i < sb.length(); i++) {
+            if (sb.charAt(i) == sb.charAt(i-1) && sb.charAt(i) == sb.charAt(i-2)) {
+                sb.deleteCharAt(i);
+                i--;
+            }
+        }
+        return sb.toString();
+    }
 }
