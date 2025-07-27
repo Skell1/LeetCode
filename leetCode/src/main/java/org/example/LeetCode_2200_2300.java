@@ -4,6 +4,44 @@ import java.util.*;
 
 public class LeetCode_2200_2300 {
     public static void main(String[] args) {
+        System.out.println(new LeetCode_2200_2300().countHillValley(new int[]{57,57,57,57,57,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,85,85,85,86,86,86}));
+    }
+
+    public int countHillValley(int[] nums) { //2210
+        int result = 0;
+        int k;
+        for (int i = 1; i < nums.length - 1; i++) {
+            if (nums[i] == nums[i - 1]) {
+                continue;
+            }
+            if (nums[i] > nums[i - 1]) {
+                k = i;
+                do {
+                    k++;
+                    if (k> nums.length-1) {
+                        return result;
+                    }
+                } while (nums[i] == nums[k]);
+                if (nums[i] > nums[k]) {
+                    result++;
+                    i = k-1;
+                }
+            } else if (nums[i] < nums[i - 1]) {
+                k = i;
+                do {
+                    k++;
+                    if (k> nums.length-1) {
+                        return result;
+                    }
+                } while (nums[i] == nums[k]);
+                if (nums[i] < nums[k]) {
+                    result++;
+                    i = k-1;
+                }
+            }
+        }
+
+        return result;
     }
 
     public List<List<Integer>> findWinners(int[][] matches) { //2225
