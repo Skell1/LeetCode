@@ -4,6 +4,10 @@ public class LeetCode_1300_1400 {
     public static void main(String[] args) {
     }
 
+    public int maximum69Number (int num) { //1323
+        return Integer.parseInt(Integer.toString(num).replaceFirst("6", "9"));
+    }
+
     public static int minSteps(String s, String t) { //1347
         StringBuilder builder = new StringBuilder(t.length());
         builder.append(t);
