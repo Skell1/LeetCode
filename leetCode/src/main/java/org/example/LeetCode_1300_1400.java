@@ -15,6 +15,16 @@ public class LeetCode_1300_1400 {
         return res;
     }
 
+    public int[] getNoZeroIntegers(int n) { //1317
+        int i;
+        for (i = 1; i <= n; i++) {
+            if (!String.valueOf(i).contains("0") && !String.valueOf(n-i).contains("0")) {
+                break;
+            }
+        }
+        return new int[]{i, n-i};
+    }
+
     public int maximum69Number (int num) { //1323
         return Integer.parseInt(Integer.toString(num).replaceFirst("6", "9"));
     }
