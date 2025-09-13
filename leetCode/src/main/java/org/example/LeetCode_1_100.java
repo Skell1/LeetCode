@@ -1,13 +1,35 @@
 package org.example;
 
+import java.util.Stack;
+
 public class LeetCode_1_100 {
     public static void main(String[] args) {
 //        System.out.println(mySqrt(4));
 //        System.out.println(mySqrt(8));
-        System.out.println(mySqrt(2147395599));
+        System.out.println(new LeetCode_1_100().isValid("()[]{}"));
 
 
     }
+
+    public boolean isValid(String s) { //20
+        Stack<Character> stack = new Stack<Character>();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '[') {
+                stack.push(s.charAt(i));
+            } else if (stack.isEmpty()) return false;
+            else if (s.charAt(i) == ')') {
+                if (stack.pop() != '(') return false;
+            } else if (s.charAt(i) == '}') {
+                if (stack.pop() != '{') return false;
+            } else if (s.charAt(i) == ']') {
+                if (stack.pop() != '[') return false;
+            }
+        }
+        return stack.isEmpty();
+
+    }
+
+
     public static int mySqrt(int x) { //69
         if(x <= 1) {
             return x;
