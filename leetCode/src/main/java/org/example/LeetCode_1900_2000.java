@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class LeetCode_1900_2000 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_1900_2000().removeOccurrences("aabababa", "aba"));
+        System.out.println(new LeetCode_1900_2000().canBeTypedWords("leet code", "lt"));
     }
 
     public static String largestOddNumber(String num) { //1903
@@ -28,6 +28,22 @@ public class LeetCode_1900_2000 {
         Arrays.sort(nums);
         System.gc();
         return nums[nums.length-1]*nums[nums.length-2]-nums[1]*nums[0];
+    }
+
+    public int canBeTypedWords(String text, String brokenLetters) { //1935
+        if (brokenLetters.isEmpty()) return text.split(" ").length;
+        String[] brokenLetter = brokenLetters.split("");
+        int count = 0;
+        for (String s : text.split(" ")) {
+            for (String b : brokenLetter) {
+                if (s.contains(b)) {
+                    count--;
+                    break;
+                }
+            }
+            count++;
+        }
+        return count;
     }
 
     public String makeFancyString(String s) { //1957
