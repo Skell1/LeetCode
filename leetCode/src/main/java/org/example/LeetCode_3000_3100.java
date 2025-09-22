@@ -21,6 +21,26 @@ public class LeetCode_3000_3100 {
         return result;
     }
 
+    public int maxFrequencyElements(int[] nums) { //3005
+        int[] array = new int[101];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = 0;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            array[nums[i]] += 1;
+        }
+        int max = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > max) max = array[i];
+        }
+        int count = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == max) count++;
+        }
+        return max*count;
+    }
+
     public long flowerGame(int n, int m) { //3021
         long countChetA = n % 2 == 0 ? n / 2 : (n-1) / 2;
         long countNeChetA = n - countChetA;
