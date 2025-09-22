@@ -23,20 +23,17 @@ public class LeetCode_3000_3100 {
 
     public int maxFrequencyElements(int[] nums) { //3005
         int[] array = new int[101];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = 0;
-        }
 
-        for (int i = 0; i < nums.length; i++) {
-            array[nums[i]] += 1;
+        for (int num : nums) {
+            array[num] += 1;
         }
         int max = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > max) max = array[i];
+        for (int j : array) {
+            if (j > max) max = j;
         }
         int count = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == max) count++;
+        for (int j : array) {
+            if (j == max) count++;
         }
         return max*count;
     }
