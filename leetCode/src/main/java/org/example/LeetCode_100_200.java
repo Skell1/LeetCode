@@ -1,6 +1,7 @@
 package org.example;
 
 
+import java.util.List;
 import java.util.Stack;
 
 public class LeetCode_100_200 {
@@ -11,6 +12,22 @@ public class LeetCode_100_200 {
 
         rotate(b,2);
         new LeetCode_100_200().rob(new int[]{1,2,3,1});
+    }
+
+    public int minimumTotal(List<List<Integer>> triangle) { //120
+
+        for (int i = 1; i < triangle.size(); i++) {
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                if (j == 0) {
+                    triangle.get(i).set(j, triangle.get(i).get(j)+triangle.get(i-1).get(j));
+                } else if (j == triangle.get(i).size() - 1) {
+                    triangle.get(i).set(j, triangle.get(i).get(j)+triangle.get(i-1).get(j-1));
+                } else {
+                    triangle.get(i).set(j, triangle.get(i).get(j)+Math.min(triangle.get(i-1).get(j-1),triangle.get(i-1).get(j)));
+                }
+                }
+            }
+        return triangle.get(triangle.size()-1).stream().min(Integer::compareTo).get();
     }
 
     public int evalRPN(String[] tokens) { //150
