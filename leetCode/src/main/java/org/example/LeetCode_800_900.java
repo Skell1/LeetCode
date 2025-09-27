@@ -24,13 +24,24 @@ public class LeetCode_800_900 {
         //System.out.println(leafSimilar());
     }
 
-    public static boolean leafSimilar(TreeNode root1, TreeNode root2) { //872
-        List<Integer>  a = new ArrayList<>();
-        List<Integer>  b = new ArrayList<>();
+    public double largestTriangleArea(int[][] points) { //812
+        double res = 0;
+        double temp;
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                for (int k = j + 1; k < points.length; k++) {
+                    temp = triangleArea(points[i], points[j], points[k]);
+                    if (temp > res) {
+                        res = temp;
+                    }
+                }
+            }
+        }
+        return res;
+    }
 
-        List anA = TreeNode.allLast(root1, a);
-        List anB = TreeNode.allLast(root2, b);
-        return anB.equals(anA);
+    private double triangleArea(int[] a, int[] b, int[] c) {
+        return (double) Math.abs(a[0] * (b[1] - c[1]) + b[0] * (c[1] - a[1]) + c[0] * (a[1] - b[1])) /2;
     }
 
     public static boolean backspaceCompare(String s, String t) {// 844
@@ -74,5 +85,14 @@ public class LeetCode_800_900 {
         }
         System.gc();
         return ans;
+    }
+
+    public static boolean leafSimilar(TreeNode root1, TreeNode root2) { //872
+        List<Integer>  a = new ArrayList<>();
+        List<Integer>  b = new ArrayList<>();
+
+        List anA = TreeNode.allLast(root1, a);
+        List anB = TreeNode.allLast(root2, b);
+        return anB.equals(anA);
     }
 }
