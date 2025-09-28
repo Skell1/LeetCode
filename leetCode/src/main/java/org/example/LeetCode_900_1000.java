@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.util.TreeNode;
-
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LeetCode_900_1000 {
@@ -73,5 +70,18 @@ public class LeetCode_900_1000 {
                 a = matrix[length-1][i];
         }
         return a;
+    }
+
+    public int largestPerimeter(int[] nums) { //976
+        if (nums.length < 3) {
+            return 0;
+        }
+        Arrays.sort(nums);
+        for (int i = nums.length - 1-2; i >= 0; --i) {
+            if (nums[i] + nums[i+1] > nums[i+2]) {
+                return nums[i] + nums[i+1] + nums[i+2];
+            }
+        }
+        return 0;
     }
 }
