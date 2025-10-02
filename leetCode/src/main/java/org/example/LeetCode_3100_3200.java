@@ -5,6 +5,26 @@ public class LeetCode_3100_3200 {
         System.out.println(new LeetCode_3100_3200().clearDigits("cb34"));
     }
 
+    public int maxBottlesDrunk(int numBottles, int numExchange) { //3100
+        int drinkCount = 0;
+        int emptyCount = 0;
+
+        while (true) {
+            if (numBottles > 0) {
+                emptyCount += numBottles;
+                drinkCount += numBottles;
+                numBottles = 0;
+            } else if (emptyCount >= numExchange) {
+                emptyCount -= numExchange;
+                numExchange++;
+                numBottles++;
+            } else {
+                break;
+            }
+        }
+        return drinkCount;
+    }
+
     public int longestMonotonicSubarray(int[] nums) { //3105
         int increasing = 1, decreasing = 1;
         int maxincreasing = 1, maxdecreasing = 1;
