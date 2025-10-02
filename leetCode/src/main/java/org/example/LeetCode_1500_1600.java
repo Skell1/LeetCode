@@ -8,6 +8,25 @@ public class LeetCode_1500_1600 {
         System.out.println(new LeetCode_1500_1600().threeConsecutiveOdds(new int[]{102,780,919,897,901}));
     }
 
+    public int numWaterBottles(int numBottles, int numExchange) { //1518
+        int drinkCount = 0;
+        int emptyCount = 0;
+
+        while (true) {
+            if (numBottles > 0) {
+                emptyCount += numBottles;
+                drinkCount += numBottles;
+                numBottles = 0;
+            } else if (emptyCount >= numExchange) {
+                emptyCount -= numExchange;
+                numBottles++;
+            } else {
+                break;
+            }
+        }
+        return drinkCount;
+    }
+
     public boolean threeConsecutiveOdds(int[] arr) { //1550
         int count = 1;
         for (int i = 0; i < arr.length - 1; i++) {
