@@ -11,7 +11,9 @@ public class LeetCode_100_200 {
         rotate(a,3);
 
         rotate(b,2);
-        new LeetCode_100_200().rob(new int[]{1,2,3,1});
+        //new LeetCode_100_200().compareVersion("1.2", "1.10");
+        new LeetCode_100_200().compareVersion("1.0", "1.0.0.0");
+
     }
 
     public int minimumTotal(List<List<Integer>> triangle) { //120
@@ -57,15 +59,32 @@ public class LeetCode_100_200 {
         return stack.peek();
     }
 
-    public int rob(int[] nums) { //198
-        int n = nums.length;
-        int pre = 0, cur = 0;
-        for (int i = 0; i < n; i++) {
-            int temp = Math.max(pre + nums[i], cur);
-            pre = cur;
-            cur = temp;
+    public int compareVersion(String version1, String version2) { //165
+        String[] v1 = version1.split("\\.");
+        String[] v2 = version2.split("\\.");
+
+        int length = Math.max(v1.length, v2.length);
+
+        for (int i = 0; i < length; i++) {
+            if (v1.length>i && v2.length>i) {
+                if (Integer.parseInt(v1[i])>Integer.parseInt(v2[i])) {
+                    return 1;
+                } else if (Integer.parseInt(v1[i])<Integer.parseInt(v2[i])) {
+                    return -1;
+                }
+            } else {
+                if (v1.length>i) {
+                    if (Integer.parseInt(v1[i])>0) {
+                        return 1;
+                    }
+                } else {
+                    if (Integer.parseInt(v2[i])>0) {
+                        return -1;
+                    }
+                }
+            }
         }
-        return cur;
+        return 0;
     }
 
     public static void rotate(int[] nums, int k) { // 189
@@ -77,5 +96,17 @@ public class LeetCode_100_200 {
         System.arraycopy(nums, size-k, b, 0, k);
         System.arraycopy(b, 0, nums, 0,k);
         System.arraycopy(a, 0, nums, k, size-k);
-   }
+    }
+
+    public int rob(int[] nums) { //198
+        int n = nums.length;
+        int pre = 0, cur = 0;
+        for (int i = 0; i < n; i++) {
+            int temp = Math.max(pre + nums[i], cur);
+            pre = cur;
+            cur = temp;
+        }
+        return cur;
+    }
+
 }
