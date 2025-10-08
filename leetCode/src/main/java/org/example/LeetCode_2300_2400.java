@@ -1,14 +1,30 @@
 package org.example;
 
-import org.example.util.TreeNode;
-
 import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
 
 public class LeetCode_2300_2400 {
     public static void main(String[] args) {
+        System.out.println(Arrays.toString(new LeetCode_2300_2400().successfulPairs(new int[]{5, 1, 3}, new int[]{1, 2, 3, 4, 5}, 7)));
+    }
 
+    public int[] successfulPairs(int[] spells, int[] potions, long success) { //2300
+        Arrays.sort(potions);
+        int[] res = new int[spells.length];
+        int a,b;
+        for (int i = 0; i < spells.length; i++) {
+            a = 0;
+            b = potions.length;
+            while (a!=b) {
+                if ((long) spells[i] * potions[(b+a)/2] >= success) {
+                    b = (b+a)/2;
+                } else {
+                    a = (b+a)/2+1;
+                }
+
+            }
+           res[i] = potions.length - a;
+        }
+        return res;
     }
 
     public long zeroFilledSubarray(int[] nums) { //2348
