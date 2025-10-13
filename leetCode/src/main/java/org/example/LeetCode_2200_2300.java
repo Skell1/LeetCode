@@ -89,4 +89,23 @@ public class LeetCode_2200_2300 {
         return answer;
     }
 
+    public List<String> removeAnagrams(String[] words) { //2273
+        List<String> result = new ArrayList<>(List.of(words));
+        char[] a,b;
+        for (int i = 1; i < result.size(); i++) {
+            if (result.get(i).length() == result.get(i-1).length()) {
+                a = result.get(i).toCharArray();
+                b = result.get(i-1).toCharArray();
+                Arrays.sort(a);
+                Arrays.sort(b);
+                if (Arrays.equals(a,b)) {
+                    result.remove(i);
+                    i--;
+                }
+            }
+        }
+        return result;
+
+    }
+
 }
