@@ -1,9 +1,32 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LeetCode_3300_3400 {
     public static void main(String[] args) {
         System.out.println(new LeetCode_3300_3400().countSubarrays(new int[]{-1,-4,-1,4}));
 
+    }
+
+    public boolean hasIncreasingSubarrays(List<Integer> nums, int k) { //3349
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+        int sum = 1;
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums.get(i) > nums.get(i-1)) {
+                sum++;
+            } else {
+                list.add(sum);
+                sum = 1;
+            }
+            if (sum >= k) {
+                if (sum >= 2*k || list.get(list.size()-1) >= k) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public int countSubarrays(int[] nums) { //3392
