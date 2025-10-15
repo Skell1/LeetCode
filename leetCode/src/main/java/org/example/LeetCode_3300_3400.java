@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LeetCode_3300_3400 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3300_3400().countSubarrays(new int[]{-1,-4,-1,4}));
+        System.out.println(new LeetCode_3300_3400().maxIncreasingSubarrays(List.of(-15,19)));
 
     }
 
@@ -27,6 +27,36 @@ public class LeetCode_3300_3400 {
             }
         }
         return false;
+    }
+
+    public int maxIncreasingSubarrays(List<Integer> nums) { //3350
+        List<Integer> list = new ArrayList<>();
+        int max = 0;
+        int result = 0;
+        int sum = 1;
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums.get(i) > nums.get(i-1)) {
+                sum++;
+            } else {
+                list.add(sum);
+                if (sum >= max) {
+                    max = sum;
+                }
+                sum = 1;
+            }
+        }
+        if (sum >= max) {
+            max = sum;
+        }
+        list.add(sum);
+
+        for (int i = 1; i < list.size(); i++) {
+            sum = Math.min(list.get(i), list.get(i-1));
+            if (sum > result) {
+                result = sum;
+            }
+        }
+        return Math.max(max / 2, result);
     }
 
     public int countSubarrays(int[] nums) { //3392
