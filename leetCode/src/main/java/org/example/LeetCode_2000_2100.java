@@ -9,6 +9,16 @@ public class LeetCode_2000_2100 {
         System.out.println(new LeetCode_2000_2100().findEvenNumbers(new int[]{2,1,3,0}));
     }
 
+    public int finalValueAfterOperations(String[] operations) { //2011
+        int x = 0;
+        for(String op : operations) {
+            if (op.contains("+")) {
+                x++;
+            } else x--;
+        }
+        return x;
+    }
+
     public int[] findEvenNumbers(int[] digits) { //2094
         List<Integer> evenNumbers = new ArrayList<>();
         for (int i = 0; i < digits.length; i++) {
