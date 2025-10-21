@@ -10,13 +10,13 @@ public class LeetCode_2000_2100 {
     }
 
     public int finalValueAfterOperations(String[] operations) { //2011
-        int x = 0;
+        int res = 0;
         for(String op : operations) {
             if (op.contains("+")) {
-                x++;
-            } else x--;
+                res++;
+            } else res--;
         }
-        return x;
+        return res;
     }
 
     public int[] findEvenNumbers(int[] digits) { //2094
