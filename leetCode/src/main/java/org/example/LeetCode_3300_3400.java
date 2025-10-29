@@ -59,6 +59,14 @@ public class LeetCode_3300_3400 {
         return Math.max(max / 2, result);
     }
 
+    public int smallestNumber(int n) { //3370
+        int res = 1;
+        while (res < n) {
+            res*=2;
+        }
+        return res-1<n ? res*2-1 : res-1;
+    }
+
     public int countSubarrays(int[] nums) { //3392
         int result = 0;
         for (int i = 0; i < nums.length-2; i++) {
