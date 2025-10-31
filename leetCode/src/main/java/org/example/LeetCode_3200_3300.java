@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class LeetCode_3200_3300 {
     public static void main(String[] args) {
 
@@ -37,6 +39,20 @@ public class LeetCode_3200_3300 {
             }
         }
         return Math.max(Math.max(a, b), Math.max(c, d));
+    }
+
+    public int[] getSneakyNumbers(int[] nums) { //3289
+        int[] temp = new int[100];
+        int[] result = new int[2];
+        int j = 0;
+        for (int num : nums) {
+            temp[num]++;
+            if (temp[num] == 2) {
+                result[j] = num;
+                j++;
+            }
+        }
+        return result;
     }
 
 }
