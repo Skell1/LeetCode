@@ -1,12 +1,23 @@
 package org.example;
 
-import java.util.Arrays;
+import org.example.util.ListNode;
+
+import java.util.*;
 
 public class LeetCode_3200_3300 {
     public static void main(String[] args) {
 
+//        ListNode body2 = new ListNode(9, null);
+//        ListNode body1 = new ListNode(10, body2);
+//        ListNode head = new ListNode(2, body1);
 
-         System.out.println(new LeetCode_3200_3300().maximumLength(new int[]{1,2,3,4}));
+        ListNode body4 = new ListNode(1, null);
+        ListNode body3 = new ListNode(8, body4);
+        ListNode body2 = new ListNode(1, body3);
+        ListNode body1 = new ListNode(7, body2);
+        ListNode head = new ListNode(3, body1);
+
+         System.out.println(new LeetCode_3200_3300().modifiedList(new int[]{1,7,6,2,4}, head));
     }
 
     public int maximumLength(int[] nums) { //3201
@@ -39,6 +50,43 @@ public class LeetCode_3200_3300 {
             }
         }
         return Math.max(Math.max(a, b), Math.max(c, d));
+    }
+
+    public ListNode modifiedList(int[] nums, ListNode head) { //3217
+        ListNode result = head;
+
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+
+        boolean flag = true;
+        while (flag) {
+            flag = false;
+            if (set.contains(result.val)) {
+                result= result.next;
+                flag = true;
+            }
+        }
+
+        ListNode before = result;
+        ListNode current = result.next;
+        while (before!= null && current != null) {
+            flag = false;
+            if (set.contains(current.val)) {
+                    before.next=current.next;
+                    current = current.next;
+                    flag = true;
+            }
+            if (flag) {
+                continue;
+            }
+            before = before.next;
+            if (before != null) {
+                current = before.next;
+            }
+        }
+        return result;
     }
 
     public int[] getSneakyNumbers(int[] nums) { //3289
