@@ -19,6 +19,19 @@ public class LeetCode_2100_2200 {
         return "";
     }
 
+    public int countOperations(int num1, int num2) { //2169
+        int count = 0;
+        while (num1 != 0 && num2 != 0) {
+            if (num1 > num2) {
+                num1 -= num2;
+            } else {
+                num2 -= num1;
+            }
+            count++;
+        }
+        return count;
+    }
+
     public List<Integer> replaceNonCoprimes(int[] nums) { //2197
         Stack<Integer> stack = new Stack<>();
         stack.push(nums[0]);
