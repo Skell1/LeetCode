@@ -13,9 +13,7 @@ public class LeetCode_1500_1600 {
         int curr = 0;
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '0') {
-                if (curr == 0) {
-                    continue;
-                } else {
+                if (curr != 0) {
                     res += (long) (curr + 1) * curr / 2;
                     curr = 0;
                 }
