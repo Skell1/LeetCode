@@ -60,4 +60,17 @@ public class LeetCode_1400_1500 {
         return result;
 
     }
+
+    public boolean kLengthApart(int[] nums, int k) { //1437
+        int current = k;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                if (current < k) return false;
+                current = 0;
+            } else {
+                current++;
+            }
+        }
+        return true;
+    }
 }
