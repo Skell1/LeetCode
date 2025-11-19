@@ -19,6 +19,18 @@ public class LeetCode_2100_2200 {
         return "";
     }
 
+    public int findFinalValue(int[] nums, int original) { //2154
+        int i = 0;
+        while (i<nums.length) {
+            if (nums[i] == original) {
+                original = original * 2;
+                i = -1;
+            }
+            i++;
+        }
+        return original;
+    }
+
     public int countOperations(int num1, int num2) { //2169
         int count = 0;
         while (num1 != 0 && num2 != 0) {
