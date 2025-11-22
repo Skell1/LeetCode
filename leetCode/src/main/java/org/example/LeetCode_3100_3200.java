@@ -85,4 +85,14 @@ public class LeetCode_3100_3200 {
         return sb.toString();
     }
 
+    public int minimumOperations(int[] nums) { //3190
+        int result = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 3 != 0) {
+                result++;
+            }
+        }
+        return result;
+    }
+
 }
