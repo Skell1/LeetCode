@@ -11,6 +11,15 @@ public class LeetCode_3500_3600 {
 
     }
 
+    public int minOperations(int[] nums, int k) { //3512
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        return sum % k;
+
+    }
+
     public int findClosest(int x, int y, int z) { //3516
         int diff = Math.abs(x - z) - Math.abs(y - z);
         if (diff > 0) return 2;
