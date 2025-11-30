@@ -6,6 +6,19 @@ public class LeetCode_700_800 {
         System.out.println(kthGrammarOld(7,12));
     }
 
+    public boolean isOneBitCharacter(int[] bits) { //717
+        int i = 0;
+        while (i < bits.length-1) {
+            if (bits[i] == 1) {
+                i+=2;
+            } else {
+                i++;
+            }
+        }
+        return i == bits.length-1;
+
+    }
+
     public static int kthGrammar(int n, int k) { //779
         System.out.println(n + "  " + k);
 
