@@ -7,6 +7,14 @@ public class LeetCode_300_400 {
         System.out.println(isPowerOfFour(-16));
     }
 
+    public boolean isPowerOfThree(int n) { //326
+        if (n <= 0) return false;
+        while (n % 3 == 0) {
+            n /= 3;
+        }
+        return n == 1;
+    }
+
     class RandomizedSet { //380
         HashMap<Integer, Integer> map;
         List<Integer> list;
