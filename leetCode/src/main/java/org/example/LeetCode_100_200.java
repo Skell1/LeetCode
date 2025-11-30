@@ -1,6 +1,7 @@
 package org.example;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -12,8 +13,30 @@ public class LeetCode_100_200 {
 
         rotate(b,2);
         //new LeetCode_100_200().compareVersion("1.2", "1.10");
-        new LeetCode_100_200().compareVersion("1.0", "1.0.0.0");
+        System.out.println(new LeetCode_100_200().generate(5));
 
+    }
+
+    public List<List<Integer>> generate(int numRows) { //118
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
+        List<Integer> create;
+
+        temp.add(1);
+        res.add(temp);
+        for (int i = 2; i <= numRows; i++) {
+            temp = res.get(i-2);
+            create = new ArrayList<>();
+            for (int j = 1; j <= i; j++) {
+                if (j == 1 || j == i) {
+                    create.add(1);
+                } else {
+                    create.add(temp.get(j - 2) + temp.get(j-1));
+                }
+            }
+            res.add(create);
+        }
+        return res;
     }
 
     public int minimumTotal(List<List<Integer>> triangle) { //120
