@@ -89,6 +89,19 @@ public class LeetCode_2200_2300 {
         return answer;
     }
 
+    public String largestGoodInteger(String num) { //2264
+        int res = -1;
+        int temp;
+        for (int i = 0; i < num.length()-2; i++) {
+            if (num.charAt(i) == num.charAt(i+1) && num.charAt(i) == num.charAt(i+2))  {
+                temp = num.charAt(i) - '0';
+                if (temp > res) res = temp;
+            }
+        }
+        if (res == -1) return "";
+        return ""+res+res+res;
+    }
+
     public List<String> removeAnagrams(String[] words) { //2273
         List<String> result = new ArrayList<>(List.of(words));
         char[] a,b;
