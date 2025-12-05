@@ -5,7 +5,26 @@ import java.util.List;
 
 public class LeetCode_3400_3500 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3400_3500().hasSameDigits("545"));
+        System.out.println(new LeetCode_3400_3500().countPartitions(new int[]{10,10,3,7,6}));
+
+    }
+
+    public int countPartitions(int[] nums) { //3432
+        int result = 0;
+        int left = 0;
+        int right = 0;
+        for (int num : nums) {
+            right += num;
+        }
+
+        for (int i = 0; i < nums.length-1; i++) {
+            left += nums[i];
+            right -= nums[i];
+            if ((left - right) % 2 == 0) {
+                result++;
+            }
+        }
+        return result;
 
     }
 
