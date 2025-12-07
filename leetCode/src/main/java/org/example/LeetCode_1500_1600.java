@@ -46,6 +46,17 @@ public class LeetCode_1500_1600 {
         return drinkCount;
     }
 
+    public int countOdds(int low, int high) { //1523
+        if (low % 2 == 0 && high % 2 == 0){
+            return (high-low)/2;
+        }
+        else if (low % 2 != 0 && high % 2 != 0){
+            return (high-low)/2+1;
+        }
+        else
+            return (high-low)/2+1;
+    }
+
     public boolean threeConsecutiveOdds(int[] arr) { //1550
         int count = 1;
         for (int i = 0; i < arr.length - 1; i++) {
