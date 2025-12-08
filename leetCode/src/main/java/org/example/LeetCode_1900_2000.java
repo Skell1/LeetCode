@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class LeetCode_1900_2000 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_1900_2000().canBeTypedWords("leet code", "lt"));
+        System.out.println(new LeetCode_1900_2000().countTriples(5));
     }
 
     public static String largestOddNumber(String num) { //1903
@@ -28,6 +28,25 @@ public class LeetCode_1900_2000 {
         Arrays.sort(nums);
         System.gc();
         return nums[nums.length-1]*nums[nums.length-2]-nums[1]*nums[0];
+    }
+
+    public int countTriples(int n) { //1925
+        int sqrt = n*n;
+        int result = 0;
+        int temp;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                temp = i*i + j*j;
+                if (temp <= sqrt) {
+                    if (Math.sqrt(temp) % 1 == 0) {
+                        result++;
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     public int canBeTypedWords(String text, String brokenLetters) { //1935
