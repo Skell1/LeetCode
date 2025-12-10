@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class LeetCode_3500_3600 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3500_3600().findClosest(2,7,4));
+        System.out.println(new LeetCode_3500_3600().countPermutations(new int[]{38,223,100,123,406,234,256,93,222,259,233,69,139,245,45,98,214}));
 
     }
 
@@ -37,6 +37,20 @@ public class LeetCode_3500_3600 {
 
         return map.entrySet().stream().filter(e -> r.contains(e.getKey())).mapToInt(Map.Entry::getValue).max().orElse(0)
                 +map.entrySet().stream().filter(e -> !r.contains(e.getKey())).mapToInt(Map.Entry::getValue).max().orElse(0);
+    }
+
+    public int countPermutations(int[] complexity) { //3577
+        long result = 0;
+        for (int i = 1; i < complexity.length; i++) {
+            if (complexity[i] <= complexity[0]) {
+                return 0;
+            }
+        }
+        result++;
+        for (int i = 1; i < complexity.length; i++) {
+            result = result * i % 1000000007 ;
+        }
+        return (int) (result % 1000000007);
     }
 
 }
