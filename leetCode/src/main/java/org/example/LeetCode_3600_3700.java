@@ -1,11 +1,29 @@
 package org.example;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LeetCode_3600_3700 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3600_3700().countTrapezoids(new int[][]{{}}));
+        System.out.println(new LeetCode_3600_3700().validateCoupons(new String[]{"SAVE20","","PHARMA5","SAVE@20"},
+                new String[]{"restaurant","grocery","pharmacy","restaurant"},
+                new boolean[]{true,true,true,true}));
 
+    }
+
+    public List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) { //3606
+        Set<String> codeSet = Set.of("electronics", "grocery", "pharmacy", "restaurant");
+        List<Map.Entry<String, String>> entries = new ArrayList<>();
+        for (int i = 0; i < code.length; i++) {
+            if (isActive[i]) {
+                if (codeSet.contains(businessLine[i])) {
+                    if (code[i].matches("^[-\\w.]+$")) {
+                        entries.add(Map.entry(code[i], businessLine[i]));
+                    }
+                }
+            }
+        }
+        return entries.stream().sorted(Map.Entry.<String, String>comparingByValue().thenComparing(Map.Entry.comparingByKey())).map(Map.Entry::getKey).collect(Collectors.toList());
     }
 
     public int countTrapezoids(int[][] points) { //3623
