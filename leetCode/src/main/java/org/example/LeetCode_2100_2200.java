@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class LeetCode_2100_2200 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_2100_2200().replaceNonCoprimes(new int[]{31,97561,97561,97561,97561,97561,97561,97561,97561}));
+        System.out.println(new LeetCode_2100_2200().numberOfWays("PPPPPPPSPPPSPPPPSPPPSPPPPPSPPPSPPSPPSPPPPPSPSPPPPPSPPSPPPPPSPPSPPSPPPSPPPPSPPPPSPPPPPSPSPPPPSPSPPPSPPPPSPPPPPSPSPPSPPPPSPPSPPSPPSPPPSPPSPSPPSSSS"));
     }
 
     public static String firstPalindrome(String[] words) {//2108
@@ -19,6 +19,37 @@ public class LeetCode_2100_2200 {
         return "";
     }
 
+    public int numberOfWays(String corridor) { //2147
+        char[] chars = corridor.toCharArray();
+        long result = 1;
+        int curr = 0;
+        int temp = 0;
+        int countS = 0;
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == 'S') {
+                countS++;
+                if (curr < 2) {
+                    curr++;
+                } else {
+                    curr = 1;
+                    if (temp != 0) {
+                        result = (result * (temp + 1)) % 1000000007;
+                        temp = 0;
+                    }
+                }
+            } else {
+                if (curr == 2) {
+                    temp++;
+                }
+            }
+        }
+        if (countS < 2 || countS % 2 == 1) {
+            return 0;
+        }
+        return (int) result;
+
+    }
+    // 5*6*3*6*6*6*3*5*6*5*4*6*3*3*3*3*3
     public int findFinalValue(int[] nums, int original) { //2154
         int i = 0;
         while (i<nums.length) {
