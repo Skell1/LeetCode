@@ -7,7 +7,7 @@ public class LeetCode_900_1000 {
 
 
     public static void main(String[] args) {
-        System.out.println(new LeetCode_900_1000().sumSubarrayMins(new int[]{11,81,94,43,3}));
+        System.out.println(new LeetCode_900_1000().minDeletionSize(new String[]{"cba","daf","ghi"}));
     }
     private final int MOD = 1000000007;
 
@@ -70,6 +70,29 @@ public class LeetCode_900_1000 {
                 a = matrix[length-1][i];
         }
         return a;
+    }
+
+    public int minDeletionSize(String[] strs) { //944
+        int tempa = 0;
+        int size = strs[0].length();
+        int[] temp = new int[size];
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < strs.length; i++) {
+            for (int j = 0; j < size; j++) {
+                if (i == 0) {
+                    temp[j] = strs[i].charAt(j) - 'a';
+                } else {
+                    tempa = strs[i].charAt(j) - 'a';
+                    if (tempa <= temp[j]) {
+                        set.add(j);
+                    }
+                    temp[j] = tempa;
+                }
+
+            }
+
+        }
+        return set.size();
     }
 
     public int largestPerimeter(int[] nums) { //976
