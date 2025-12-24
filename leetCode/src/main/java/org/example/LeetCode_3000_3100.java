@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class LeetCode_3000_3100 {
     public static void main(String[] args) {
         System.out.println(new LeetCode_3000_3100().flowerGame(100000,100000));
@@ -57,4 +59,20 @@ public class LeetCode_3000_3100 {
         if (nums[0] == nums[1] || nums[1] == nums[2] || nums[0] == nums[2]) return "isosceles";
         return "scalene";
     }
+
+    public int minimumBoxes(int[] apple, int[] capacity) { //3074
+        Arrays.sort(capacity);
+        int current = capacity.length;
+        int res = 0;
+        long sum = 0;
+        for (int appleIndex : apple) {
+            sum += appleIndex;
+        }
+        while (sum > 0) {
+            sum -= capacity[--current];
+            res++;
+        }
+        return res;
+    }
+
 }
