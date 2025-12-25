@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class LeetCode_3000_3100 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3000_3100().flowerGame(100000,100000));
+        System.out.println(new LeetCode_3000_3100().maximumHappinessSum(new int[]{1,2,3}, 2));
     }
 
     public int areaOfMaxDiagonal(int[][] dimensions) { //3000
@@ -71,6 +71,18 @@ public class LeetCode_3000_3100 {
         while (sum > 0) {
             sum -= capacity[--current];
             res++;
+        }
+        return res;
+    }
+
+    public long maximumHappinessSum(int[] happiness, int k) { //3075
+        long res = 0;
+        Arrays.sort(happiness);
+        int current = happiness.length;
+
+
+        for (int i = 0; i < k; i++) {
+            res += Math.max(happiness[--current] - i, 0);
         }
         return res;
     }
