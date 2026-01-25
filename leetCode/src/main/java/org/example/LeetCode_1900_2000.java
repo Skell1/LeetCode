@@ -75,4 +75,20 @@ public class LeetCode_1900_2000 {
         }
         return sb.toString();
     }
+
+    public int minimumDifference(int[] nums, int k) { //1984
+        Arrays.sort(nums);
+        int a = 0, b = k-1;
+        if (k> nums.length) {
+            return 0;
+        }
+        int result = nums[b] - nums[a];
+        while (b < nums.length) {
+            if (nums[b] - nums[a] < result) {
+                result = nums[b] - nums[a];
+            }
+            a++; b++;
+        }
+        return result;
+    }
 }
