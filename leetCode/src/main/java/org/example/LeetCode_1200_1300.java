@@ -11,6 +11,25 @@ public class LeetCode_1200_1300 {
         System.out.println(getDecimalValue(c));
     }
 
+    public List<List<Integer>> minimumAbsDifference(int[] arr) { //1200
+        List<List<Integer>> res = new ArrayList<>();
+
+        int min = Integer.MAX_VALUE;
+        Arrays.sort(arr);
+        int temp;
+        for (int i = 0; i < arr.length - 1; i++) {
+            temp = arr[i+1] - arr[i];
+            if (temp < min) {
+                res.clear();
+                min = temp;
+                res.add(Arrays.asList(arr[i],arr[i+1]));
+            } else if (temp == min) {
+                res.add(Arrays.asList(arr[i],arr[i+1]));
+            }
+        }
+        return res;
+    }
+
     public boolean uniqueOccurrences(int[] arr) { //1207
         HashMap<Integer,Integer> map = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
