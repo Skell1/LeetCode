@@ -19,6 +19,15 @@ public class LeetCode_700_800 {
 
     }
 
+    public char nextGreatestLetter(char[] letters, char target) { //744
+        for (char letter : letters) {
+            if (letter > target) {
+                return letter;
+            }
+        }
+        return letters[0];
+    }
+
     public static int kthGrammar(int n, int k) { //779
         System.out.println(n + "  " + k);
 
