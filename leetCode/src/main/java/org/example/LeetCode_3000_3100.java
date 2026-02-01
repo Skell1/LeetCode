@@ -40,6 +40,13 @@ public class LeetCode_3000_3100 {
         return max*count;
     }
 
+    public int minimumCost(int[] nums) { //3010
+        int res = nums[0];
+        nums[0] = Integer.MAX_VALUE;
+        Arrays.sort(nums);
+        return res + nums[0] + nums[1];
+    }
+
     public long flowerGame(int n, int m) { //3021
         long countChetA = n % 2 == 0 ? n / 2 : (n-1) / 2;
         long countNeChetA = n - countChetA;
