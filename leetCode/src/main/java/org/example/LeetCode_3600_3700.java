@@ -60,4 +60,25 @@ public class LeetCode_3600_3700 {
         return (int) totalPairs;
 
     }
+
+    public boolean isTrionic(int[] nums) { //3637
+        if (nums[1] <= nums[0]) return false;
+        int count = 1;
+        boolean isPlus = true;
+        for (int i = 1; i < nums.length-1; i++) {
+            if (nums[i+1] == nums[i]) return false;
+            if (isPlus) {
+                if (nums[i + 1] < nums[i]) {
+                    count++;
+                    isPlus = false;
+                }
+            } else {
+                if (nums[i + 1] > nums[i]) {
+                    count++;
+                    isPlus = true;
+                }
+            }
+        }
+        return count == 3;
+    }
 }
