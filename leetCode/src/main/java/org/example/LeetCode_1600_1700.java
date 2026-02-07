@@ -1,10 +1,37 @@
 package org.example;
 
+import org.w3c.dom.Node;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LeetCode_1600_1700 {
     public static void main(String[] args) {
+
+    }
+
+    public int minimumDeletions(String s) { //1653
+        int countA = 0;
+        int countB = 0;
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == 'a') {
+                countA++;
+            }
+        }
+        int min = countA;
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i-1) == 'b') {
+                countB++;
+            }
+            if (s.charAt(i) == 'a') {
+                countA--;
+            }
+            if (min > countA+countB) {
+                min = countA+countB;
+            }
+        }
+        return min;
+
 
     }
 
