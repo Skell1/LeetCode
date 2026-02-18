@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class LeetCode_600_700 {
     public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(imageSmoother(new int[][]{{100, 200, 100}, {200, 50, 200}, {100, 200, 100}})));
+        System.out.println(new LeetCode_600_700().hasAlternatingBits(5));
     }
 
     public int triangleNumber(int[] nums) { //611
@@ -76,6 +76,19 @@ public class LeetCode_600_700 {
         }
         System.gc();
         return result;
+    }
+
+    public boolean hasAlternatingBits(int n) { //693
+        long curr = 1;
+        if (n % 2 == 0) {
+            curr = 2;
+        }
+
+        while (n > 0 && n >= curr) {
+            n -= curr;
+            curr *= 4;
+        }
+        return n == 0;
     }
 
 }
