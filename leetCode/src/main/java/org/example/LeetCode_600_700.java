@@ -1,10 +1,12 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LeetCode_600_700 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_600_700().hasAlternatingBits(5));
+        System.out.println(new LeetCode_600_700().countBinarySubstrings("00110"));
     }
 
     public int triangleNumber(int[] nums) { //611
@@ -89,6 +91,27 @@ public class LeetCode_600_700 {
             curr *= 4;
         }
         return n == 0;
+    }
+
+    public int countBinarySubstrings(String s) { //696
+        List<Integer> list = new ArrayList<>();
+        char c = s.charAt(0);
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                count++;
+            } else {
+                list.add(count);
+                count = 1;
+                c = s.charAt(i);
+            }
+        }
+        list.add(count);
+        int result = 0;
+        for (int i = 0; i < list.size()-1; i++) {
+            result += Math.min(list.get(i), list.get(i + 1));
+        }
+        return result;
     }
 
 }
