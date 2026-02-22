@@ -21,7 +21,7 @@ public class LeetCode_800_900 {
         int[][] matrix = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
         int[][] mat = new int[][]{{1,2,3},{4,5,6}};
 
-        //System.out.println(leafSimilar());
+        System.out.println(new LeetCode_800_900().binaryGap(29));
     }
 
     public double largestTriangleArea(int[][] points) { //812
@@ -85,6 +85,26 @@ public class LeetCode_800_900 {
         }
         System.gc();
         return ans;
+    }
+
+    public int binaryGap(int n) { //868
+        String temp = Integer.toBinaryString(n);
+        int max = 0;
+        Integer a = null, b = null;
+        for (int i = 0; i < temp.length(); i++) {
+            if (temp.charAt(i) == '1') {
+                if (a == null) {
+                    a = i;
+                } else {
+                    b = i;
+                    if (b-a > max) {
+                        max = b-a;
+                    }
+                    a = b;
+                }
+            }
+        }
+        return max;
     }
 
     public static boolean leafSimilar(TreeNode root1, TreeNode root2) { //872
