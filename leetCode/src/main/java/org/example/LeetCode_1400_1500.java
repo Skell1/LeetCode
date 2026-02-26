@@ -6,35 +6,30 @@ import java.util.Arrays;
 
 public class LeetCode_1400_1500 {
     public static void main(String[] args) {
-        System.out.println(maxScore("1111"));
-        //1011011  5
-        //11100  2
+        System.out.println(new LeetCode_1400_1500().numSteps("1101"));
     }
 
-    public int pseudoPalindromicPaths (TreeNode root) { //1457
-        return pseudoPalindromicPathsUtil(root, new int[9]);
-    }
-
-    public int pseudoPalindromicPathsUtil (TreeNode root, int[] array) {
-        if (root!=null) {
-            array[root.val-1]++;
-            if (root.left == null && root.right == null) {
-                int k = 0;
-                for (int i = 0; i < array.length; i++) {
-                    if (array[i] % 2 != 0) {
-                        k++;
-                        if (k > 1) {
-                            return 0;
-                        }
-                    }
+    public int numSteps(String s) { //1404
+        int res = 0;
+        boolean hasNext = false;
+        for (int i = s.length()-1; i > 0; i--) {
+             res++;
+            if (s.charAt(i) == '0') {
+                if (hasNext) {
+                    res++;
                 }
-                return 1;
+            } else {
+                if (!hasNext) {
+                    res++;
+                    hasNext = true;
+                }
             }
         }
-        return (root.right != null ? pseudoPalindromicPathsUtil(root.right , Arrays.copyOf(array, array.length)) : 0) + (root.left != null ? pseudoPalindromicPathsUtil(root.left , Arrays.copyOf(array, array.length)) : 0);
+        if (hasNext) {
+            res+=1;
+        }
+        return res;
     }
-
-
 
     public static int maxScore(String s) { //1422
         int length = s.length();
@@ -73,4 +68,28 @@ public class LeetCode_1400_1500 {
         }
         return true;
     }
+
+    public int pseudoPalindromicPaths (TreeNode root) { //1457
+        return pseudoPalindromicPathsUtil(root, new int[9]);
+    }
+
+    public int pseudoPalindromicPathsUtil (TreeNode root, int[] array) {
+        if (root!=null) {
+            array[root.val-1]++;
+            if (root.left == null && root.right == null) {
+                int k = 0;
+                for (int i = 0; i < array.length; i++) {
+                    if (array[i] % 2 != 0) {
+                        k++;
+                        if (k > 1) {
+                            return 0;
+                        }
+                    }
+                }
+                return 1;
+            }
+        }
+        return (root.right != null ? pseudoPalindromicPathsUtil(root.right , Arrays.copyOf(array, array.length)) : 0) + (root.left != null ? pseudoPalindromicPathsUtil(root.left , Arrays.copyOf(array, array.length)) : 0);
+    }
+
 }
