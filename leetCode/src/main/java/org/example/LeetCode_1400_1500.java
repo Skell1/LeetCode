@@ -6,9 +6,29 @@ import java.util.Arrays;
 
 public class LeetCode_1400_1500 {
     public static void main(String[] args) {
-        System.out.println(maxScore("1111"));
-        //1011011  5
-        //11100  2
+        System.out.println(new LeetCode_1400_1500().numSteps("1101"));
+    }
+
+    public int numSteps(String s) { //1404
+        int res = 0;
+        boolean hasNext = false;
+        for (int i = s.length()-1; i > 0; i--) {
+             res++;
+            if (s.charAt(i) == '0') {
+                if (hasNext) {
+                    res++;
+                }
+            } else {
+                if (!hasNext) {
+                    res++;
+                    hasNext = true;
+                }
+            }
+        }
+        if (hasNext) {
+            res+=1;
+        }
+        return res;
     }
 
     public int pseudoPalindromicPaths (TreeNode root) { //1457
