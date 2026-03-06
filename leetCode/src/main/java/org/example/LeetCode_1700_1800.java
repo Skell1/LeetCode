@@ -77,4 +77,19 @@ public class LeetCode_1700_1800 {
         }
         return n == 2 ? false : true;
     }
+
+    public boolean checkOnesSegment(String s) { //1784
+        boolean findZero = false;
+        for (int i = 0; i < s.length(); i++) {
+            if (findZero && s.charAt(i) == '1') {
+                return false;
+            }
+            if (s.charAt(i) == '0') {
+                findZero = true;
+            }
+        }
+        return true;
+    }
+
+
 }
