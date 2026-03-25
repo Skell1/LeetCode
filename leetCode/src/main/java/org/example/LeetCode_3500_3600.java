@@ -1,13 +1,13 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LeetCode_3500_3600 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3500_3600().countPermutations(new int[]{38,223,100,123,406,234,256,93,222,259,233,69,139,245,45,98,214}));
+        System.out.println(new LeetCode_3500_3600().canPartitionGrid(new int[][]{{1,1,1}}));
+        //System.out.println(new LeetCode_3500_3600().canPartitionGrid(new int[][]{{9753,4621,3652},{3003,4050,433}}));
 
     }
 
@@ -37,6 +37,42 @@ public class LeetCode_3500_3600 {
 
         return map.entrySet().stream().filter(e -> r.contains(e.getKey())).mapToInt(Map.Entry::getValue).max().orElse(0)
                 +map.entrySet().stream().filter(e -> !r.contains(e.getKey())).mapToInt(Map.Entry::getValue).max().orElse(0);
+    }
+
+    public boolean canPartitionGrid(int[][] grid) { //3546
+        long max = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                max += grid[i][j];
+            }
+        }
+        if (max % 2 != 0) return false;
+        max /= 2;
+        long current = 0;
+        for (int i = 0; i < grid.length-1; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                current += grid[i][j];
+            }
+            if (current == max) {
+                return true;
+            }
+            if (current > max) {
+                break;
+            }
+        }
+        current = 0;
+        for (int i = 0; i < grid[0].length-1; i++) {
+            for (int j = 0; j < grid.length; j++) {
+                current += grid[j][i];
+            }
+            if (current == max) {
+                return true;
+            }
+            if (current > max) {
+                break;
+            }
+        }
+        return false;
     }
 
     public int countPermutations(int[] complexity) { //3577
