@@ -26,6 +26,24 @@ public class LeetCode_600_700 {
         return sum;
     }
 
+    public boolean judgeCircle(String moves) { //657
+        int countR = 0;
+        int countU = 0;
+
+        for (char c : moves.toCharArray()) {
+            if (c == 'R') {
+                countR++;
+            } else if (c == 'L') {
+                countR--;
+            } else if (c == 'U') {
+                countU++;
+            } else if (c == 'D') {
+                countU--;
+            }
+        }
+        return countR == 0 && countU == 0;
+    }
+
     public static int[][] imageSmoother(int[][] img) { //661
         int x = img.length;
         int y = img[0].length;
