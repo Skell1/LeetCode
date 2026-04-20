@@ -19,6 +19,22 @@ public class LeetCode_2000_2100 {
         return res;
     }
 
+    public int maxDistance(int[] colors) { //2078
+        int a = 0, b = 0;
+        for (int i = 0; i < colors.length; i++) {
+            if (a == 0 && colors[colors.length - 1 - i] != colors[0] ) {
+                a = colors.length - 1 - i;
+            }
+            if (b == 0 && colors[colors.length - 1] != colors[i] ) {
+                b = colors.length - 1 - i;
+            }
+            if (a!=0 && b!=0) {
+                break;
+            }
+        }
+        return Math.max(a,b);
+    }
+
     public int[] findEvenNumbers(int[] digits) { //2094
         List<Integer> evenNumbers = new ArrayList<>();
         for (int i = 0; i < digits.length; i++) {
