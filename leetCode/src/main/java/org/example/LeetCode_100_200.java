@@ -82,6 +82,16 @@ public class LeetCode_100_200 {
         return stack.peek();
     }
 
+    public int findMin(int[] nums) { //153
+        int min = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] < min) {
+                min = nums[i];
+            }
+        }
+        return min;
+    }
+
     public int compareVersion(String version1, String version2) { //165
         String[] v1 = version1.split("\\.");
         String[] v2 = version2.split("\\.");
