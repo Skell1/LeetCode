@@ -1,11 +1,11 @@
 package org.example;
 
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class LeetCode_2100_2200 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_2100_2200().numberOfWays("PPPPPPPSPPPSPPPPSPPPSPPPPPSPPPSPPSPPSPPPPPSPSPPPPPSPPSPPPPPSPPSPPSPPPSPPPPSPPPPSPPPPPSPSPPPPSPSPPPSPPPPSPPPPPSPSPPSPPPPSPPSPPSPPSPPPSPPSPSPPSSSS"));
+        System.out.println(new LeetCode_2100_2200().minimumCost(new int[]{5,5}));
+       // System.out.println(new LeetCode_2100_2200().minimumCost(new int[]{6,5,7,9,2,2}));
     }
 
     public static String firstPalindrome(String[] words) {//2108
@@ -17,6 +17,17 @@ public class LeetCode_2100_2200 {
             stringBuilder.setLength(0);
         }
         return "";
+    }
+
+    public int minimumCost(int[] cost) { //2144
+        int res = 0;
+        Arrays.sort(cost);
+        for (int i = 1; i <= cost.length; i++) {
+            if (i % 3 != 0) {
+                res += cost[cost.length-i];
+            }
+        }
+        return res;
     }
 
     public int numberOfWays(String corridor) { //2147
