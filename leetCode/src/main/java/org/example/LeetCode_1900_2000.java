@@ -76,6 +76,16 @@ public class LeetCode_1900_2000 {
         return sb.toString();
     }
 
+    public int numOfStrings(String[] patterns, String word) { //1967
+        int count = 0;
+        for (String p : patterns) {
+            if (word.contains(p)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public int minimumDifference(int[] nums, int k) { //1984
         Arrays.sort(nums);
         int a = 0, b = k-1;
