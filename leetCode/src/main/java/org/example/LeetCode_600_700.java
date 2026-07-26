@@ -26,6 +26,12 @@ public class LeetCode_600_700 {
         return sum;
     }
 
+    public int maximumProduct(int[] nums) { //628
+        Arrays.sort(nums);
+        return Math.max(nums[nums.length-1]*nums[nums.length-2]*nums[nums.length-3],
+                nums[0]*nums[1]*nums[nums.length-1]) ;
+    }
+
     public boolean judgeCircle(String moves) { //657
         int countR = 0;
         int countU = 0;
