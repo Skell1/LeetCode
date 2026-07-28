@@ -1,12 +1,13 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LeetCode_3500_3600 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3500_3600().canPartitionGrid(new int[][]{{1,1,1}}));
+        System.out.println(new LeetCode_3500_3600().smallestPalindrome("daccad"));
         //System.out.println(new LeetCode_3500_3600().canPartitionGrid(new int[][]{{9753,4621,3652},{3003,4050,433}}));
 
     }
@@ -25,6 +26,24 @@ public class LeetCode_3500_3600 {
         if (diff > 0) return 2;
         else if (diff == 0) return 0;
         else return 1;
+    }
+
+    public String smallestPalindrome(String s) { //3517
+        char[]  chars = s.toCharArray();
+        Arrays.sort(chars);
+        StringBuilder sb = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        String c = "";
+        for (int i = 0;  i < chars.length; i++) {
+            if (i+1<chars.length && chars[i] == chars[i + 1]) {
+                sb2.append(chars[i+1]);
+                sb.append(chars[i]);
+                i++;
+            } else {
+                c = String.valueOf(chars[i]);
+            }
+        }
+        return sb.append(c).append(sb2.reverse()).toString();
     }
 
     public int maxFreqSum(String s) { //3541
