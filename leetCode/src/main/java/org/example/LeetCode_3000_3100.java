@@ -1,10 +1,13 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LeetCode_3000_3100 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3000_3100().maximumHappinessSum(new int[]{1,2,3}, 2));
+        System.out.println(new LeetCode_3000_3100().minimumPushes("xycdefghij"));
     }
 
     public int areaOfMaxDiagonal(int[][] dimensions) { //3000
@@ -56,6 +59,26 @@ public class LeetCode_3000_3100 {
 
         return countChetA*countNeChetB + countChetB*countNeChetA;
 
+    }
+
+    public int minimumPushes(String word) { //3014
+        char[] chars = word.toCharArray();
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : chars) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        int a = 1;
+        int b = 1;
+        int res = 0;
+        for (Integer c : map.values().stream().sorted(Comparator.reverseOrder()).toList()) {
+            if (a == 9) {
+                a = 1;
+                b++;
+            }
+            a++;
+            res += b*c;
+        }
+        return res;
     }
 
     public String triangleType(int[] nums) { //3024
