@@ -81,6 +81,26 @@ public class LeetCode_3000_3100 {
         return res;
     }
 
+    public int minimumPushes2(String word) { //3016
+        char[] chars = word.toCharArray();
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : chars) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        int a = 1;
+        int b = 1;
+        int res = 0;
+        for (Integer c : map.values().stream().sorted(Comparator.reverseOrder()).toList()) {
+            if (a == 9) {
+                a = 1;
+                b++;
+            }
+            a++;
+            res += b*c;
+        }
+        return res;
+    }
+
     public String triangleType(int[] nums) { //3024
         if (nums[0] + nums[1] <= nums[2] ||
                 nums[0] + nums[2] <= nums[1] ||
