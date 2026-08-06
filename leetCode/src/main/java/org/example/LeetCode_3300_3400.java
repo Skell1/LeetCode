@@ -5,8 +5,25 @@ import java.util.List;
 
 public class LeetCode_3300_3400 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3300_3400().maxIncreasingSubarrays(List.of(-15,19)));
+        System.out.println(new LeetCode_3300_3400().smallestNumber(21,2));
 
+    }
+
+    public int smallestNumber(int n, int t) { //3345
+        int temp;
+        int proizv = 1;
+        while (true) {
+            temp = n;
+            while (temp > 0) {
+                proizv *= temp % 10;
+                if (proizv % t == 0) {
+                    return n;
+                }
+                temp /= 10;
+            }
+            proizv = 1;
+            n++;
+        }
     }
 
     public boolean hasIncreasingSubarrays(List<Integer> nums, int k) { //3349
