@@ -9,6 +9,19 @@ public class LeetCode_3700_3800 {
 
     }
 
+    public List<Integer> findMissingElements(int[] nums) { //3731
+        List<Integer> res = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 1; i++) {
+            while (nums[i] + 1 != nums[i + 1]) {
+                res.add(nums[i]+1);
+                nums[i]++;
+            }
+
+        }
+        return res;
+    }
+
     public int totalWaviness(int num1, int num2) { //3751
         int count = 0;
         for (int i = num1; i <= num2; i++) {
