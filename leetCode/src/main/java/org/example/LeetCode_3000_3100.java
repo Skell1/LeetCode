@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class LeetCode_3000_3100 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3000_3100().minimumPushes("xycdefghij"));
+        System.out.println(new LeetCode_3000_3100().maximumLengthSubstring("bcbbbcba"));
     }
 
     public int areaOfMaxDiagonal(int[][] dimensions) { //3000
@@ -135,6 +135,31 @@ public class LeetCode_3000_3100 {
             res += Math.max(happiness[--current] - i, 0);
         }
         return res;
+    }
+
+    public int maximumLengthSubstring(String s) { //3090
+        int[] count = new int[26];
+        int a = 0, b = 0;
+        int c;
+        int temp = -1;
+        int res = 0;
+        while (b < s.length()) {
+            c = s.charAt(b) - 'a';
+            if (count[c] < 2) {
+                count[c]++;
+            } else {
+                count[c]++;
+                res = Math.max(res, b-a);
+                while (temp != c) {
+                    temp = s.charAt(a) - 'a';
+                    count[temp]--;
+                    a++;
+                }
+                temp = -1;
+            }
+            b++;
+        }
+        return Math.max(res, b-a);
     }
 
 }
