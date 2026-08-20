@@ -1,13 +1,12 @@
 package org.example;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class LeetCode_3000_3100 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3000_3100().maximumLengthSubstring("bcbbbcba"));
+        //System.out.println(new LeetCode_3000_3100().resultArray(new int[]{2,1,3}));
+        System.out.println(new LeetCode_3000_3100().resultArray(new int[]{1,2,14,15}));
+
     }
 
     public int areaOfMaxDiagonal(int[][] dimensions) { //3000
@@ -108,6 +107,27 @@ public class LeetCode_3000_3100 {
         if (nums[1] == nums[2] && nums[1] == nums[0]) return "equilateral";
         if (nums[0] == nums[1] || nums[1] == nums[2] || nums[0] == nums[2]) return "isosceles";
         return "scalene";
+    }
+
+    public int[] resultArray(int[] nums) { //3066
+        List<Integer> res = new ArrayList<>();
+        List<Integer> res1 = new ArrayList<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (i == 0) {
+                res.add(nums[i]);
+                continue;
+            } else if (i == 1) {
+                res1.add(nums[i]);
+                continue;
+            } else if (res.get(res.size()-1) > res1.get(res1.size()-1)) {
+                res.add(nums[i]);
+            } else {
+                res1.add(nums[i]);
+            }
+        }
+        res.addAll(res1);
+        return res.stream().mapToInt(i -> i).toArray();
     }
 
     public int minimumBoxes(int[] apple, int[] capacity) { //3074
