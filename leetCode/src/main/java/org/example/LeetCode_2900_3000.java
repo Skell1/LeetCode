@@ -4,13 +4,12 @@ import java.util.Arrays;
 
 public class LeetCode_2900_3000 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_2900_3000().shortestBeautifulSubstring("100011001", 3));
+        System.out.println(new LeetCode_2900_3000().shortestBeautifulSubstring("001110101101101111", 10));
     }
 
     public String shortestBeautifulSubstring(String s, int k) { //2904
         int a = 0, b = 0, count = 0;
-        long integer = Long.MAX_VALUE;
-        long temp;
+        String temp;
         String res = "";
         while (b < s.length()) {
             if (s.charAt(b) == '1') {
@@ -20,10 +19,21 @@ public class LeetCode_2900_3000 {
                         a++;
                     }
                     count--;
-                    temp = Long.parseLong(s.substring(a, b+1));
-                    if (temp < integer) {
-                        integer = temp;
-                        res = s.substring(a, b+1);
+                    temp = s.substring(a, b+1);
+                    if (res.isEmpty() || temp.length() < res.length()) {
+                        res = temp;
+                    } else {
+                        if (res.length() == temp.length()) {
+                            for (int i = 0; i < temp.length(); i++) {
+                                if (temp.charAt(i) == '1' && res.charAt(i) == '0') {
+                                    break;
+                                }
+                                if (temp.charAt(i) == '0' && res.charAt(i) == '1') {
+                                    res = temp;
+                                    break;
+                                }
+                            }
+                        }
                     }
                     a++;
                 }
