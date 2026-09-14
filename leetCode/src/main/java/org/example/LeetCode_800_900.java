@@ -44,6 +44,13 @@ public class LeetCode_800_900 {
         return (double) Math.abs(a[0] * (b[1] - c[1]) + b[0] * (c[1] - a[1]) + c[0] * (a[1] - b[1])) /2;
     }
 
+    public boolean isRectangleOverlap(int[] rec1, int[] rec2) { //836
+        if (rec1[0] >= rec2[2] || rec1[2] <= rec2[0] || rec1[1] >= rec2[3] || rec1[3] <= rec2[1]) {
+            return false;
+        }
+        return true;
+    }
+
     public static boolean backspaceCompare(String s, String t) {// 844
         List<Character> a = s.chars().mapToObj(e->(char)e).collect(Collectors.toList());
         List<Character> b = t.chars().mapToObj(e->(char)e).collect(Collectors.toList());
