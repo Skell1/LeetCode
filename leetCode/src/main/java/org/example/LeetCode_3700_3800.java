@@ -5,8 +5,27 @@ import java.util.stream.Collectors;
 
 public class LeetCode_3700_3800 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3700_3800().totalWaviness(4848, 4848));
+        System.out.println(new LeetCode_3700_3800().maxAlternatingSum(new int[]{1,2,3}));
 
+    }
+
+    public long maxAlternatingSum(int[] nums) { //3727
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = nums[i] * nums[i];
+        }
+        Arrays.sort(nums);
+
+        long res = 0;
+        int i = 0, j = nums.length - 1;
+        while (i <= j) {
+            res += nums[j];
+            j--;
+            if (i <= j) {
+                res -= nums[i];
+                i++;
+            }
+        }
+        return res;
     }
 
     public List<Integer> findMissingElements(int[] nums) { //3731
