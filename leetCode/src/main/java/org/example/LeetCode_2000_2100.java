@@ -35,6 +35,17 @@ public class LeetCode_2000_2100 {
         return Math.max(a,b);
     }
 
+    public List<Integer> targetIndices(int[] nums, int target) { //2089
+        Arrays.sort(nums);
+        List<Integer> res = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                res.add(i);
+            }
+        }
+        return res;
+    }
+
     public int minimumDeletions(int[] nums) { //2091
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
