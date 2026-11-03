@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class LeetCode_3700_3800 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3700_3800().maxAlternatingSum(new int[]{1,2,3}));
+        System.out.println(new LeetCode_3700_3800().minMoves(new int[]{2,1,3}));
 
     }
 
@@ -39,6 +39,19 @@ public class LeetCode_3700_3800 {
 
         }
         return res;
+    }
+
+    public int minMoves(int[] nums) { //3736
+        int sum = 0, max = nums[0];
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > max) {
+                max = nums[i];
+            }
+        }
+        for (int i = 0; i < nums.length; i++) {
+            sum += max - nums[i];
+        }
+        return sum;
     }
 
     public int totalWaviness(int num1, int num2) { //3751
