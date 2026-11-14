@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LeetCode_3300_3400 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_3300_3400().smallestNumber(21,2));
+        System.out.println(new LeetCode_3300_3400().minimumSumSubarray(List.of(-12,9),1, 1));
 
     }
 
@@ -74,6 +74,31 @@ public class LeetCode_3300_3400 {
             }
         }
         return Math.max(max / 2, result);
+    }
+
+    public int minimumSumSubarray(List<Integer> nums, int l, int r) { //3364
+        int result = -1;
+        int sum = 0;
+        for (int i = 0; i <= nums.size(); i++) {
+            for (int j = i; j < i+l; j++) {
+                if (j >= nums.size()) {
+                    sum = -1;
+                    break;
+                }
+                sum += nums.get(j);
+            }
+            if (sum > 0 && (result > sum || result == -1)) {
+                result = sum;
+            }
+            for (int j = i+l; j < i+r && j<nums.size(); j++) {
+                sum += nums.get(j);
+                if (sum > 0 && (result > sum || result == -1)) {
+                    result = sum;
+                }
+            }
+            sum = 0;
+        }
+        return result;
     }
 
     public int smallestNumber(int n) { //3370
