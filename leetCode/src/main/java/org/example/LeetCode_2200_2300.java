@@ -4,7 +4,7 @@ import java.util.*;
 
 public class LeetCode_2200_2300 {
     public static void main(String[] args) {
-        System.out.println(new LeetCode_2200_2300().triangularSum(new int[]{2,6,6,5,5,3,3,8,6,4,3,3,5,1,0,1,3,6,9}));
+        System.out.println(new LeetCode_2200_2300().digitSum("11111222223", 3));
     }
 
     public int countHillValley(int[] nums) { //2210
@@ -87,6 +87,23 @@ public class LeetCode_2200_2300 {
         answer.add(first);
         answer.add(second);
         return answer;
+    }
+
+    public String digitSum(String s, int k) { //2243
+        int temp = 0;
+        StringBuilder sb = new StringBuilder();
+        while (s.length() > k) {
+            for (int i = 0; i < s.length(); i+=k) {
+                for (int j = 0; i+j < s.length() && j<k; j++) {
+                    temp += s.charAt(i+j) - '0';
+                }
+                sb.append(temp);
+                temp = 0;
+            }
+            s = sb.toString();
+            sb.setLength(0);
+        }
+        return s;
     }
 
     public String largestGoodInteger(String num) { //2264
