@@ -19,6 +19,22 @@ public class LeetCode_2100_2200 {
         return "";
     }
 
+    public boolean checkString(String s) { //2124
+        boolean findB = false, findA = false;
+        char a;
+        for (int i = 0; i < s.length(); i++) {
+            a = s.charAt(i);
+            if (!findB && a == 'b') {
+                findB = true;
+            }
+            if (findB && a == 'a') {
+                findA = true;
+                break;
+            }
+        }
+        return !findA;
+    }
+
     public int minimumCost(int[] cost) { //2144
         int res = 0;
         Arrays.sort(cost);
