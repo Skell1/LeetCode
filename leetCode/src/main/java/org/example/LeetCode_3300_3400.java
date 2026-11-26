@@ -76,6 +76,14 @@ public class LeetCode_3300_3400 {
         return Math.max(max / 2, result);
     }
 
+    public boolean canAliceWin(int n) { //3360
+        for (int i = 10; i > 0; i--) {
+            if (n < i) return i % 2 != 0;
+            n-=i;
+        }
+        return true;
+    }
+
     public int minimumSumSubarray(List<Integer> nums, int l, int r) { //3364
         int result = -1;
         int sum = 0;
